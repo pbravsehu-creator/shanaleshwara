@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <link rel="icon" type="image/png" href="favicon.png?v=3">
-    <meta property="og:image" content="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png?v=5">
     <meta property="og:title" content="Shanaleshwara Swayambhu Temple">
-    <meta property="og:description" content="Official Portal of Shanaleshwara Temple, Nalas, Rajpura.">
+    <meta property="og:description" content="Official Portal - Nalas, Rajpura. Maha Shivratri 2026.">
+    <meta property="og:image" content="https://shanaleshwara.vercel.app/favicon.png"> 
+    <meta property="og:type" content="website">
 
-    <title>Shanaleshwara Swayambhu Temple | Nalas, Rajpura</title>
+    <title>Shanaleshwara Swayambhu Temple | Nalas</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,209 +19,186 @@
     <style>
         :root {
             --saffron: #FF9933;     
-            --saffron-dark: #cc5200;
-            --bg-dark: #0a0400;
-            --glass: rgba(255, 153, 51, 0.08); 
-            --border: rgba(255, 153, 51, 0.25);
-            --text-main: #ffffff;
+            --saffron-bright: #FFAB5E;
+            --deep-orange: #CC5200;
+            --bg-dark: #120600; /* Dark Chocolate/Orange tint */
+            --glass: rgba(255, 153, 51, 0.12); 
+            --border: rgba(255, 153, 51, 0.4);
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: #000; color: var(--text-main); overflow-x: hidden; padding-bottom: 90px; }
+        /* Prevent horizontal scroll on mobile */
+        html, body { 
+            max-width: 100%; 
+            overflow-x: hidden; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Lato', sans-serif;
+        }
 
-        /* NEW ANIMATION: DIVINE FLOATING PARTICLES (Replacing Waves) */
-        .bg-animation {
+        /* NEW ANIMATION: DIVINE AURA GLOW */
+        .bg-glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; background: radial-gradient(circle at center, #1a0800 0%, #000 100%);
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #2a0f00 0%, #000 100%);
         }
-        .particle {
-            position: absolute; bottom: -10px; background: var(--saffron);
-            border-radius: 50%; opacity: 0.3; filter: blur(1.5px);
-            animation: rise 8s infinite ease-in;
+        .aura-circle {
+            position: absolute; width: 300px; height: 300px;
+            background: var(--saffron); border-radius: 50%;
+            filter: blur(150px); opacity: 0.15;
+            animation: pulse 8s infinite alternate;
         }
-        @keyframes rise {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            50% { opacity: 0.4; }
-            100% { transform: translateY(-100vh) scale(0.4); opacity: 0; }
+        @keyframes pulse {
+            0% { transform: scale(1) translate(-10%, -10%); opacity: 0.1; }
+            100% { transform: scale(1.5) translate(10%, 10%); opacity: 0.2; }
         }
 
-        /* LIGHTBOX STYLE */
+        /* LIGHTBOX */
         #lightbox {
             position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center;
         }
-        #lightbox img { max-width: 90%; max-height: 80%; border: 3px solid var(--saffron); border-radius: 10px; box-shadow: 0 0 30px var(--saffron); }
-        #lightbox .close { position: absolute; top: 30px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
+        #lightbox img { max-width: 90%; max-height: 80%; border: 2px solid var(--saffron); }
 
-        /* TYPOGRAPHY */
-        h1, h2, h3 { font-family: 'Cinzel', serif; color: var(--saffron); margin-top: 0; text-align: center; }
-        .hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        .hero h1 { font-size: clamp(2.2rem, 8vw, 4.5rem); text-shadow: 0 0 30px var(--saffron-dark); margin-bottom: 10px; }
+        /* TYPOGRAPHY - More Orange Feel */
+        h1, h2, h3 { font-family: 'Cinzel', serif; color: var(--saffron-bright); text-align: center; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
         
-        .container { max-width: 900px; margin: auto; padding: 20px; }
+        .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .hero h1 { font-size: clamp(2rem, 8vw, 4rem); margin-bottom: 5px; color: var(--saffron); }
+        
+        .container { width: 100%; max-width: 800px; margin: auto; padding: 15px; box-sizing: border-box; }
 
         .glass-card {
-            background: var(--glass); backdrop-filter: blur(15px);
+            background: var(--glass); backdrop-filter: blur(10px);
             border: 1px solid var(--border); border-radius: 20px;
-            padding: 25px; margin-bottom: 30px; box-shadow: 0 5px 30px rgba(0,0,0,0.6);
+            padding: 20px; margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* SHIVRATRI SPECIAL */
-        .special-msg-box {
-            border: 2px solid var(--saffron); background: linear-gradient(45deg, rgba(255, 153, 51, 0.15), transparent);
-            text-align: center; padding: 25px; border-radius: 15px; margin-bottom: 30px;
-            animation: glowPulse 3s infinite;
-        }
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(255,153,51,0.2); }
-            50% { box-shadow: 0 0 30px rgba(255,153,51,0.4); }
-        }
+        /* INFO SECTIONS */
+        .timing-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-        /* WHATSAPP & MAP */
-        .whatsapp-btn {
+        /* GALLERY FIX */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .gallery-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); cursor: pointer; }
+
+        /* ACTION BUTTONS - AT BOTTOM */
+        .action-area { margin-top: 20px; }
+        .btn {
             display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: #25D366; color: white; text-decoration: none;
-            padding: 16px; border-radius: 50px; font-weight: bold; font-size: 1.1rem;
-            transition: 0.3s; margin-bottom: 40px;
+            text-decoration: none; color: white; padding: 18px; border-radius: 15px;
+            font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;
         }
-        .map-container { width: 100%; height: 250px; border-radius: 15px; overflow: hidden; border: 1px solid var(--border); margin-top: 15px; }
+        .whatsapp-btn { background: #25D366; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2); }
+        .map-btn { background: #4285F4; box-shadow: 0 5px 15px rgba(66, 133, 244, 0.2); }
 
-        /* GALLERY (4:5 Ratio) */
-        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .gallery-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); cursor: pointer; transition: 0.3s; }
-        .gallery-img:hover { border-color: var(--saffron); transform: scale(1.02); }
+        /* MAP BOX */
+        .map-box { width: 100%; height: 250px; border-radius: 15px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 10px; }
 
-        /* TIMINGS */
-        .timing-row { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-
+        /* BOTTOM NAV - Simplified for No-Shift */
         .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(10, 4, 0, 0.98);
-            border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 12px 0; z-index: 1000;
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
+            background: #1a0a00; border-top: 1px solid var(--border);
+            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
         }
-        .nav-item { color: #888; text-decoration: none; text-align: center; font-size: 0.75rem; }
+        .nav-item { color: #888; text-decoration: none; font-size: 0.7rem; text-align: center; flex: 1; }
         .nav-item.active { color: var(--saffron); }
-        .nav-item i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
+        .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 3px; }
 
-        @media (min-width: 768px) { .bottom-nav { display: none; } .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+        footer { text-align: center; padding: 40px 10px 100px; color: #666; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div class="bg-animation" id="bgAnim"></div>
-
-    <div id="lightbox">
-        <span class="close">×</span>
-        <img id="lightboxImg" src="">
+    <div class="bg-glow">
+        <div class="aura-circle" style="top: 10%; left: 10%;"></div>
+        <div class="aura-circle" style="bottom: 10%; right: 10%;"></div>
     </div>
 
+    <div id="lightbox"><span class="close" onclick="closeLightbox()" style="position:absolute; top:20px; right:20px; font-size:40px; color:white;">×</span><img id="lightboxImg" src=""></div>
+
     <section id="home" class="hero">
-        <div style="font-size: 4rem; color: var(--saffron); margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--saffron));">
-            <i class="fas fa-om"></i>
-        </div>
+        <i class="fas fa-om" style="font-size: 3.5rem; color: var(--saffron); margin-bottom: 15px;"></i>
         <h1 data-aos="zoom-in">Shanaleshwara<br>Swayambhu Temple</h1>
-        <p data-aos="fade-up" style="color: #ccc; letter-spacing: 1px;">Nalas, Rajpura • Divine Swayambhu Shiva Lingam</p>
+        <p style="color: var(--saffron-bright); opacity: 0.8;">Nalas, Rajpura • Established 1592</p>
     </section>
 
     <div class="container">
         
-        <div class="special-msg-box" data-aos="flip-up">
-            <h3><i class="fas fa-bullhorn"></i> Important Sandesh</h3>
-            <p style="font-size: 1.1rem; line-height: 1.6;">
-                <strong>Har Har Mahadev!</strong><br>
-                The auspicious festival of <span style="color: var(--saffron); font-weight:bold;">Maha Shivratri</span> is on <strong>15th Feb 2026</strong>.
-                <br><br>
-                Join the 3-day Grand Fair & Holy Paidal Yatra with Sewa and Langar.
-            </p>
+        <div class="glass-card" style="border: 2px solid var(--saffron); border-radius: 15px; text-align: center;" data-aos="flip-up">
+            <h3 style="margin-top:0;"><i class="fas fa-fire"></i> Maha Shivratri 2026</h3>
+            <p style="font-size: 1.1rem;">Join the Grand Mahotsav on <strong>15th Feb 2026</strong>.<br>Langar & Paidal Yatra details inside.</p>
         </div>
 
-        <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="whatsapp-btn" data-aos="fade-up">
-            <i class="fab fa-whatsapp"></i> Join Digital Sangat
-        </a>
-
-        <section id="location" class="glass-card" data-aos="fade-up">
-            <h2><i class="fas fa-map-marker-alt"></i> Temple Location</h2>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.1558237554!2d76.5934!3d30.4851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fe3452097973d%3A0x88e7343e742416f!2sShanaleshwara%20Swayambhu%20Temple!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <p style="text-align: center; margin-top: 10px; font-size: 0.9rem; color: #888;">Vill. Nalas, Near Rajpura, Punjab</p>
+        <section id="about" class="glass-card" data-aos="fade-up">
+            <h2><i class="fas fa-scroll"></i> Divine History</h2>
+            <p>Constructed in 1592 by the Maharaja of Patiala, this temple is home to the powerful <strong>Swayambhu Shiva Lingam</strong>. It is a portal of ancient energy and spiritual peace.</p>
         </section>
 
-        <section id="deity" class="glass-card" data-aos="fade-right">
-            <h2><i class="fas fa-dharmachakra"></i> The Swayambhu Lingam</h2>
-            <p>Inside is the massive <strong>Swayambhu (Self-Manifested) Lingam</strong> of Lord Shiva. It embodies the inherent power of Shiva and requires no 'Prana Pratishtha'.</p>
-        </section>
-
-        <section id="history" class="glass-card" data-aos="fade-left">
-            <h2><i class="fas fa-history"></i> Divine History</h2>
-            <p>Built in <strong>1592</strong> by the Maharaja of Patiala. Since the 15th century, this temple has been a center for Sadhus and the Guru-Shishya tradition.</p>
-        </section>
-
-        <section id="gallery" class="glass-card" data-aos="zoom-in">
-            <h2><i class="fas fa-images"></i> Darshan Gallery</h2>
-            <p style="text-align:center; font-size: 0.8rem; opacity: 0.5; margin-bottom: 15px;">(Click to view full screen)</p>
+        <section id="gallery" class="glass-card" data-aos="fade-up">
+            <h2><i class="fas fa-camera-retro"></i> Temple Darshan</h2>
             <div class="gallery-grid">
-                <img src="img1.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 1">
-                <img src="img2.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 2">
-                <img src="img3.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 3">
-                <img src="img4.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 4">
-                <img src="img5.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 5">
+                <img src="img1.jpg" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="img2.jpg" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="img3.jpg" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="img4.jpg" class="gallery-img" onclick="openLightbox(this.src)">
             </div>
         </section>
 
         <section id="timings" class="glass-card" data-aos="fade-up">
-            <h2><i class="fas fa-clock"></i> Temple Timings</h2>
-            <div class="timing-row"><span>Morning</span><span>04:00 - 11:45</span></div>
-            <div class="timing-row"><span>Evening (Win)</span><span>14:30 - 20:00</span></div>
-            <div class="timing-row"><span>Evening (Sum)</span><span>14:30 - 20:30</span></div>
-            <div class="timing-row"><span>Monday (Spl)</span><span>Up to 21:30</span></div>
-            <div class="timing-row" style="border:none; color:var(--saffron);"><span>Trayodashi</span><span>04:00 - 23:45</span></div>
+            <h2><i class="fas fa-clock"></i> Darshan Timings</h2>
+            <div class="timing-row"><span>Morning</span><span>04:00 AM - 11:45 AM</span></div>
+            <div class="timing-row"><span>Evening</span><span>02:30 PM - 08:30 PM</span></div>
+            <div class="timing-row" style="color:var(--saffron); border:none;"><span>Monday Special</span><span>Open till 09:30 PM</span></div>
         </section>
 
-        <footer style="text-align: center; padding: 40px 0; color: #666; font-size: 0.8rem;">
-            <h3 style="font-size: 1.1rem; margin-bottom: 10px;">Shanaleshwara App</h3>
-            <p>Version 2.3 <span style="background:var(--saffron); color:#000; padding:2px 6px; border-radius:4px; font-weight:bold;">BETA</span></p>
-            <p style="margin-top: 15px; line-height: 1.6;">
-                "Never Trust, Always Verify"<br>
-                Powered by Safe Guardian AI • 2026<br>
-                <i class="fas fa-shield-alt"></i> Secure Digital Platform
-            </p>
+        <div class="action-area" data-aos="zoom-in">
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-map-marked-alt"></i> Visit Us</h2>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.1558237554!2d76.5934!3d30.4851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fe3452097973d%3A0x88e7343e742416f!2sShanaleshwara%20Swayambhu%20Temple!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            
+            <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.472733979853!2d76.5985834!3d30.5055042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fe324466b0a99%3A0xc3457585090f7793!2sShanaleshwar%20Mahadev%20Temple!5e0!3m2!1sen!2sin!4v1700000000000" target="_blank" class="btn map-btn">
+                <i class="fas fa-directions"></i> Open Google Maps Direction
+            </a>
+
+            <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="btn whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Join WhatsApp Community
+            </a>
+        </div>
+
+        <footer>
+            <p><strong>Shanaleshwara App v2.4</strong></p>
+            <p>"Never Trust, Always Verify" • Ravi Sehgal Projects</p>
+            <p style="margin-top: 10px; opacity: 0.5;">© 2026 Safe Guardian AI Protection</p>
         </footer>
     </div>
 
     <nav class="bottom-nav">
         <a href="#home" class="nav-item active"><i class="fas fa-home"></i>Home</a>
-        <a href="#location" class="nav-item"><i class="fas fa-map"></i>Map</a>
-        <a href="#gallery" class="nav-item"><i class="fas fa-images"></i>Gallery</a>
-        <a href="#timings" class="nav-item"><i class="fas fa-clock"></i>Time</a>
+        <a href="#about" class="nav-item"><i class="fas fa-history"></i>History</a>
+        <a href="#gallery" class="nav-item"><i class="fas fa-om"></i>Darshan</a>
+        <a href="#timings" class="nav-item"><i class="fas fa-clock"></i>Timings</a>
     </nav>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // Sacred Particles Generation
-        const bg = document.getElementById('bgAnim');
-        for (let i = 0; i < 35; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + '%';
-            p.style.width = p.style.height = Math.random() * 4 + 2 + 'px';
-            p.style.animationDelay = Math.random() * 10 + 's';
-            p.style.animationDuration = Math.random() * 6 + 4 + 's';
-            bg.appendChild(p);
-        }
-
-        // Lightbox Logic
+        // Lightbox
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightboxImg');
         function openLightbox(src) { lbImg.src = src; lb.style.display = 'flex'; }
-        lb.onclick = () => lb.style.display = 'none';
+        function closeLightbox() { lb.style.display = 'none'; }
+        lb.onclick = closeLightbox;
 
-        // Nav Tracking
+        // Nav Active State on Scroll
         window.addEventListener('scroll', () => {
             let current = "";
-            const sections = document.querySelectorAll('section, .hero');
-            sections.forEach(s => { if (pageYOffset >= s.offsetTop - 200) current = s.getAttribute('id'); });
+            document.querySelectorAll('section, .hero').forEach(s => {
+                if (pageYOffset >= s.offsetTop - 150) current = s.getAttribute('id');
+            });
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
                 if (item.getAttribute('href').includes(current)) item.classList.add('active');
