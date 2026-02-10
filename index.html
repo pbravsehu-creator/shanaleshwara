@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanaleshwara Swayambhu Temple | Nalas, Rajpura</title>
+    
+    <meta name="description" content="Official site of Shanaleshwara Swayambhu Temple. Maha Shivratri Mahotsav 2026 updates and timings.">
+    <meta property="og:title" content="Shanaleshwara Temple - Maha Shivratri 2026">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23FF9933%22/><text x=%2250%22 y=%2250%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 dy=%22.35em%22>ॐ</text></svg>">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --saffron: #FF9933;     
+            --saffron-dark: #cc5200;
+            --bg-gradient-start: #2e0e00; /* Deep Brown/Red */
+            --bg-gradient-end: #000000;   /* Pitch Black */
+            --glass: rgba(255, 153, 51, 0.08); 
+            --border: rgba(255, 153, 51, 0.25);
+            --text-main: #ffffff;
+            --text-muted: #dcdcdc;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #000;
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding-bottom: 90px; 
+        }
+
+        /* 1. BHAGWA WAVE ANIMATION (Updated Color) */
+        .wave-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+            /* Blue removed, now Dark Saffron/Black Gradient */
+            background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
+        }
+
+        .wave {
+            position: absolute; bottom: 0; left: 0; width: 200%; height: 100%;
+            /* Wave color set to Orange/Saffron */
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23FF9933" fill-opacity="0.15" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: repeat-x;
+            background-size: 50% 100%;
+            animation: waveMove 20s linear infinite;
+        }
+        
+        .wave:nth-child(2) {
+            bottom: 10px; opacity: 0.3; animation-duration: 15s; animation-direction: reverse;
+        }
+
+        @keyframes waveMove { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Typography & Structure */
+        h1, h2, h3 { font-family: 'Cinzel', serif; color: var(--saffron); margin-top: 0; }
+        
+        .hero {
+            height: 90vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 20px;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); text-shadow: 0 0 30px var(--saffron-dark); margin-bottom: 15px; }
+        
+        .container { max-width: 900px; margin: auto; padding: 20px; }
+
+        .glass-card {
+            background: var(--glass); backdrop-filter: blur(15px);
+            border: 1px solid var(--border); border-radius: 20px;
+            padding: 25px; margin-bottom: 30px; box-shadow: 0 5px 30px rgba(0,0,0,0.6);
+        }
+
+        /* 2. SHIVRATRI SPECIAL MESSAGE (New) */
+        .special-msg-box {
+            border: 2px solid var(--saffron);
+            background: linear-gradient(45deg, rgba(255, 153, 51, 0.2), transparent);
+            text-align: center; padding: 20px; border-radius: 15px;
+            margin-bottom: 30px; position: relative; overflow: hidden;
+            animation: glowPulse 3s infinite;
+        }
+        
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 10px rgba(255,153,51,0.2); }
+            50% { box-shadow: 0 0 25px rgba(255,153,51,0.6); }
+            100% { box-shadow: 0 0 10px rgba(255,153,51,0.2); }
+        }
+
+        /* 3. WHATSAPP BUTTON (New) */
+        .whatsapp-btn {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: #25D366; color: white; text-decoration: none;
+            padding: 15px; border-radius: 50px; font-weight: bold;
+            margin-top: 10px; font-size: 1.1rem;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+            transition: 0.3s;
+        }
+        .whatsapp-btn:hover { transform: scale(1.05); background: #20bd5a; }
+
+        /* Timings & Gallery */
+        .timing-row { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+        .gallery-img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
+
+        /* 4. FOOTER BETA DETAILS */
+        .beta-footer {
+            text-align: center; padding: 30px 20px; color: #888;
+            font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 50px;
+        }
+        .beta-tag {
+            background: var(--saffron); color: #000; padding: 2px 8px;
+            border-radius: 4px; font-weight: bold; font-size: 0.7rem;
+            vertical-align: middle; margin-left: 5px;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(20, 5, 0, 0.95); backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border); display: flex; justify-content: space-around;
+            padding: 12px 0; z-index: 1000;
+        }
+        .nav-item { color: #999; text-decoration: none; text-align: center; font-size: 0.75rem; }
+        .nav-item i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
+        .nav-item.active { color: var(--saffron); }
+
+        @media (min-width: 768px) { .bottom-nav { display: none; } }
+    </style>
+</head>
+<body>
+
+    <div class="wave-container">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
+    <section id="home" class="hero">
+        <div style="font-size: 4rem; color: var(--saffron); margin-bottom: 20px;">
+            <i class="fas fa-gopuram"></i>
+        </div>
+        <h1 data-aos="zoom-in">Shanaleshwara<br>Swayambhu Temple</h1>
+        <p data-aos="fade-up">
+            Nalas, Rajpura • A Divine Place of Swayambhu Shiva Lingam
+        </p>
+        <div style="margin-top:30px; font-size: 2rem; color: var(--saffron); animation: bounce 2s infinite;">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <div class="container">
+        
+        <div class="special-msg-box" data-aos="flip-up">
+            <h3 style="margin-bottom: 10px;"><i class="fas fa-bullhorn"></i> Important Sandesh</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6;">
+                <strong>Har Har Mahadev!</strong><br>
+                The auspicious festival of <span style="color: var(--saffron); font-weight:bold;">Maha Shivratri</span> is approaching on <strong>15th Feb 2026</strong>.
+                <br><br>
+                Prepare for the 3-day Grand Fair. Devotees are invited to join the foot journey (Paidal Yatra) with Sewa & Langar.
+            </p>
+        </div>
+
+        <div data-aos="fade-up" style="margin-bottom: 30px; text-align: center;">
+            <p style="color: #ccc; margin-bottom: 10px;">Join our Digital Sangat for daily updates:</p>
+            <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT?mode=gi_t" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Join WhatsApp Group
+            </a>
+        </div>
+
+        <section id="deity" class="glass-card" data-aos="fade-right">
+            <h2><i class="fas fa-om"></i> The Swayambhu Lingam</h2>
+            <p>Inside is the massive <strong>Swayambhu (Self-Manifested) Lingam</strong> of Lord Shiva. It embodies the inherent power of Shiva and requires no 'Prana Pratishtha'.</p>
+        </section>
+
+        <section id="history" class="glass-card" data-aos="fade-left">
+            <h2><i class="fas fa-history"></i> Divine History</h2>
+            <p>Built in <strong>1592</strong> by the <strong>Maharaja of Patiala</strong>. Since the 15th century, this temple has been a center for Sadhus and the Guru-Shishya tradition.</p>
+        </section>
+
+        <section id="gallery" class="glass-card" data-aos="zoom-in">
+            <h2><i class="fas fa-images"></i> Darshan Gallery</h2>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1615896754058-39e3fb98498a?q=80&w=300" class="gallery-img" alt="Shiva 1">
+                <img src="https://images.unsplash.com/photo-1597947115170-071a93175485?q=80&w=300" class="gallery-img" alt="Shiva 2">
+                <img src="https://images.unsplash.com/photo-1543788301-4993a6a9b581?q=80&w=300" class="gallery-img" alt="Shiva 3">
+                <img src="https://images.unsplash.com/photo-1620121692029-d088224efc74?q=80&w=300" class="gallery-img" alt="Shiva 4">
+            </div>
+        </section>
+
+        <section id="timings" class="glass-card" data-aos="fade-up">
+            <h2><i class="fas fa-clock"></i> Timings</h2>
+            <div class="timing-row"><span>Morning</span><span>04:00 - 11:45</span></div>
+            <div class="timing-row"><span>Evening (Win)</span><span>14:30 - 20:00</span></div>
+            <div class="timing-row"><span>Evening (Sum)</span><span>14:30 - 20:30</span></div>
+            <div class="timing-row"><span>Monday (Spl)</span><span>Up to 21:30</span></div>
+            <div class="timing-row" style="border:none; color:var(--saffron);"><span>Trayodashi</span><span>04:00 - 23:45</span></div>
+        </section>
+
+        <footer class="beta-footer">
+            <h3 style="font-size: 1.2rem; color: var(--saffron); margin-bottom: 10px;">Shanaleshwara Temple App</h3>
+            <p>Version 2.1 <span class="beta-tag">BETA</span></p>
+            <p>Developed for the Devotees of Rajpura & Nalas.</p>
+            <p style="margin-top: 15px; font-size: 0.7rem; opacity: 0.6;">
+                "Never Trust, Always Verify"<br>
+                Powered by Safe Guardian AI • 2026<br>
+                <i class="fas fa-shield-alt"></i> Cyber Safe & Secure
+            </p>
+        </footer>
+
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#home" class="nav-item active"><i class="fas fa-home"></i>Home</a>
+        <a href="#deity" class="nav-item"><i class="fas fa-om"></i>Deity</a>
+        <a href="#gallery" class="nav-item"><i class="fas fa-images"></i>Gallery</a>
+        <a href="#timings" class="nav-item"><i class="fas fa-clock"></i>Time</a>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        
+        // Active Nav Script
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (pageYOffset >= section.offsetTop - 200) { current = section.getAttribute('id'); }
+            });
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').includes(current)) item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
