@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" id="meta-theme" content="#FF9933">
     
-    <title>Shanaleshwara Swayambhu | Supreme v3.1</title>
+    <title>Shanaleshwara Swayambhu | Supreme v3.4</title>
+    <meta name="description" content="Official App of Shanaleshwara Swayambhu Temple, Nalas. Explore 600 years of divine history, live darshan timings, and Maha Shivratri 2026 updates.">
+    <meta property="og:title" content="Shanaleshwara Swayambhu - Official Temple App">
+    <meta property="og:description" content="Join the Digital Sangat. Experience the divine energy of the 1592 Historic Temple.">
+    <meta property="og:image" content="favicon.png"> <meta property="og:url" content="https://shanaleshwara.vercel.app/">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&family=Yantra+Manav:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,14 +21,11 @@
 
     <style>
         :root {
-            /* Neumorphic Palette */
             --bg: #e6e7ee;
             --text-main: #444;
             --text-light: #777;
             --shadow-light: #ffffff;
             --shadow-dark: #d1d5db;
-            
-            /* Dynamic Accent Color (Changed via JS) */
             --primary: #FF9933; 
         }
 
@@ -35,7 +40,7 @@
             transition: all 0.5s ease;
         }
 
-        /* --- ANIMATED BACKGROUNDS --- */
+        /* --- BACKGROUND ANIMATIONS --- */
         #flower-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
         .petal { position: absolute; top: -10px; font-size: 1.5rem; animation: fall linear forwards; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
@@ -52,80 +57,97 @@
             100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } 
         }
 
-        /* --- NEUMORPHIC COMPONENTS --- */
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; padding-bottom: 100px; }
+        /* --- RESPONSIVE LAYOUT --- */
+        .container { 
+            max-width: 1200px;
+            margin: 0 auto; 
+            padding: 20px; 
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
 
+        @media (min-width: 992px) {
+            .container { grid-template-columns: repeat(2, 1fr); padding: 40px; }
+            .full-width { grid-column: span 2; }
+        }
+
+        /* --- NEUMORPHIC CARDS --- */
         .neu-card {
             background: var(--bg);
-            border-radius: 20px;
+            border-radius: 25px;
             box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: transform 0.3s ease;
+            padding: 30px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
         }
-        .neu-card:hover { transform: translateY(-3px); }
 
         .neu-btn {
             display: flex; align-items: center; justify-content: center; gap: 10px;
             width: 100%; padding: 18px; border-radius: 50px;
             background: var(--bg);
             box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-            border: none; outline: none;
-            color: var(--primary); font-weight: 700; font-size: 1rem;
-            cursor: pointer; transition: 0.2s; text-decoration: none;
-            margin-top: 15px;
+            border: none; color: var(--primary); font-weight: 700; cursor: pointer;
+            transition: 0.3s; text-decoration: none; margin-top: 15px;
         }
-        .neu-btn:active {
-            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
-            transform: scale(0.98);
-        }
+        .neu-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); transform: scale(0.98); }
 
-        /* --- HERO SECTION --- */
-        .hero { text-align: center; margin-top: 20px; margin-bottom: 40px; }
-        
+        /* --- HERO & BELL --- */
+        .hero { text-align: center; }
         .bell-wrapper {
-            width: 120px; height: 120px; margin: 0 auto 20px;
-            border-radius: 50%;
-            background: var(--bg);
-            box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; position: relative;
+            width: 130px; height: 130px; margin: 0 auto 25px;
+            border-radius: 50%; background: var(--bg);
+            box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
         }
-        .bell-wrapper::after {
-            content: ''; position: absolute; width: 90%; height: 90%;
-            border-radius: 50%; border: 2px solid var(--primary); opacity: 0.3;
-            animation: pulse 2s infinite;
-        }
-        .bell-icon { font-size: 3.5rem; color: var(--primary); transition: color 1s, transform 0.3s; }
+        .bell-icon { font-size: 4rem; color: var(--primary); transition: color 1s; }
         .ringing { animation: ringBell 0.5s ease-in-out infinite alternate; }
         @keyframes ringBell { from { transform: rotate(-20deg); } to { transform: rotate(20deg); } }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.5); opacity: 0; } }
 
-        h1 { font-family: 'Cinzel', serif; color: var(--primary); margin: 0; font-size: 2.2rem; text-shadow: 1px 1px 2px var(--shadow-light); transition: color 1s; }
-        .subtitle { color: var(--text-light); font-size: 0.9rem; letter-spacing: 2px; margin-top: 5px; text-transform: uppercase; }
+        h1 { font-family: 'Cinzel', serif; color: var(--primary); font-size: clamp(2rem, 5vw, 3.5rem); margin: 10px 0; }
+        h2 { font-family: 'Cinzel', serif; color: var(--primary); border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 10px; margin-top: 0; }
 
-        /* --- CONTENT TYPOGRAPHY --- */
-        h2 { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.5rem; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 10px; margin-top: 0; transition: color 1s; }
-        p { line-height: 1.7; font-size: 0.95rem; color: var(--text-main); margin-bottom: 15px; }
-        strong { color: #333; }
-
-        /* --- TIMING GRID --- */
-        .timing-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 10px 0; font-size: 0.9rem; }
-        .timing-row:last-child { border: none; }
-        .timing-time { font-weight: 600; color: var(--text-main); }
-
-        /* --- MAP & NAV --- */
-        .map-frame {
-            width: 100%; height: 250px; border-radius: 15px;
-            box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
-            overflow: hidden; margin-bottom: 20px; border: 4px solid var(--bg);
+        /* --- GALLERY GRID (FIXED) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
         }
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 4px 4px 8px var(--shadow-dark);
+            height: 130px;
+            border: 2px solid var(--bg);
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
 
-        /* --- FOOTER --- */
-        footer { text-align: center; margin-top: 40px; color: var(--text-light); font-size: 0.8rem; }
-        .signature { font-weight: 600; color: var(--primary); transition: color 1s; }
+        /* --- SHIVRATRI COUNTDOWN UI --- */
+        .countdown-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .count-box {
+            background: var(--bg);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+        }
+        .count-num { display: block; font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+        .count-label { font-size: 0.6rem; text-transform: uppercase; color: var(--text-light); }
+
+        .shivratri-highlight { border: 2px solid var(--primary); }
+
+        .timing-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 12px 0; }
+
+        footer { text-align: center; padding: 40px 20px; grid-column: 1 / -1; }
 
     </style>
 </head>
@@ -133,75 +155,79 @@
 
     <div id="flower-container"></div>
     <div id="om-container"></div>
-    
     <audio id="bellAudio" src="https://www.soundjay.com/buttons/sounds/bell-ringing-05.mp3"></audio>
 
     <div class="container">
         
-        <header class="hero" data-aos="fade-down">
+        <header class="hero full-width" data-aos="zoom-in">
             <div class="bell-wrapper" onclick="triggerBell()">
                 <i class="fas fa-bell bell-icon" id="bell"></i>
             </div>
-            <h1>Shanaleshwara<br>Swayambhu</h1>
-            <p class="subtitle">Historic Temple (Est. 1592) • Nalas, Rajpura</p>
+            <h1>Shanaleshwara Swayambhu</h1>
+            <p style="letter-spacing: 3px; font-weight: 600; color: var(--text-light);">DIVINE • ANCIENT • SWAYAMBHU</p>
         </header>
 
-        <div class="neu-card" style="text-align: center;" data-aos="fade-up">
-            <p style="margin: 0; font-weight: 600; color: var(--primary); text-transform: uppercase;">
-                <i class="fas fa-circle" style="font-size: 10px; animation: pulse 1s infinite;"></i> 
-                Managed by Juna Akhara Foundation
-            </p>
-        </div>
-
-        <div class="neu-card" data-aos="fade-up">
-            <h2><i class="fas fa-scroll"></i> Divine History</h2>
-            <p>Situated in the serene Nalas village, the <strong>Shanaleshwara Swayambhu Temple</strong> is home to a 600-year-old self-manifested (Swayambhu) Shivling. It does not require <em>Prana Pratishtha</em> as it inherently embodies Shiva's power.</p>
-            <p><strong>The Legend:</strong> It is believed that a cow used to naturally shower her milk on this specific spot in the jungle, leading to the discovery of the divine Lingam by local cowherds.</p>
-            <p>The current structure was built in <strong>1592 by the Maharaja of Patiala</strong> and follows the Guru-Shishya tradition.</p>
-        </div>
-
-        <div class="neu-card" data-aos="fade-up">
-            <h2><i class="fas fa-clock"></i> Darshan Timings</h2>
-            <div class="timing-row">
-                <span>Morning</span> <span class="timing-time">04:00 AM - 11:45 AM</span>
-            </div>
-            <div class="timing-row">
-                <span>Evening (Winter)</span> <span class="timing-time">02:30 PM - 08:00 PM</span>
-            </div>
-            <div class="timing-row">
-                <span>Evening (Summer)</span> <span class="timing-time">02:30 PM - 09:00 PM</span>
-            </div>
-            <div class="timing-row">
-                <span style="color:var(--primary);">Monday Special</span> <span class="timing-time">Till 09:30 PM</span>
-            </div>
-        </div>
-
-        <div class="neu-card" data-aos="fade-up">
-            <h2><i class="fas fa-map-marked-alt"></i> Location</h2>
-            <p>Nalas Village, Near Rajpura, Distt. Patiala, Punjab.<br><small>Approx 7km from Rajpura | 30km from Chandigarh</small></p>
+        <div class="neu-card shivratri-highlight" data-aos="fade-right">
+            <h2 style="margin:0;"><i class="fas fa-om"></i> Maha Shivratri 2026</h2>
+            <p><strong>Date:</strong> February 15, 2026</p>
             
-            <div class="map-frame">
-                <iframe 
-                    width="100%" height="100%" 
-                    style="border:0" 
-                    loading="lazy" 
-                    allowfullscreen
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.194784462688!2d76.5866!3d30.5167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32326759905%3A0x6767676767676767!2sNalas%20Shiv%20Mandir!5e0!3m2!1sen!2sin!4v1625634567890!5m2!1sen!2sin">
-                </iframe>
+            <div class="countdown-container" id="timer">
+                <div class="count-box"><span class="count-num" id="days">00</span><span class="count-label">Days</span></div>
+                <div class="count-box"><span class="count-num" id="hours">00</span><span class="count-label">Hrs</span></div>
+                <div class="count-box"><span class="count-num" id="minutes">00</span><span class="count-label">Min</span></div>
+                <div class="count-box"><span class="count-num" id="seconds">00</span><span class="count-label">Sec</span></div>
             </div>
 
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Shanaleshwara+Swayambhu+Temple+Nalas+Rajpura+Punjab" target="_blank" class="neu-btn">
-                <i class="fas fa-location-arrow"></i> START LIVE NAVIGATION
-            </a>
-            
-            <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="neu-btn" style="color: #25D366;">
-                <i class="fab fa-whatsapp"></i> JOIN WHATSAPP SANGAT
-            </a>
+            <div class="timing-row" style="margin-top:20px;">
+                <span>Nishita Kaal Puja</span> <span style="font-weight:700; color: var(--primary);">12:09 AM - 01:00 AM</span>
+            </div>
+            <p style="margin-top:15px; font-size:0.85rem;">Managed by Juna Akhara Foundation. Join the Grand Fair & Paidat Yatra.</p>
         </div>
 
-        <footer>
-            <p class="signature">SHANALESHWARA SUPREME v3.1</p>
-            <p>"Never Trust, Always Verify" | Ravi Sehgal</p>
+        <div class="neu-card" data-aos="fade-left">
+            <h2><i class="fas fa-images"></i> Divine Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="img1.jpg" alt="Divine Darshan 1" onerror="this.src='https://source.unsplash.com/300x300/?temple'"></div>
+                <div class="gallery-item"><img src="img2.jpg" alt="Divine Darshan 2" onerror="this.src='https://source.unsplash.com/300x300/?shiva'"></div>
+                <div class="gallery-item"><img src="img3.jpg" alt="Divine Darshan 3" onerror="this.src='https://source.unsplash.com/300x300/?hindu'"></div>
+                <div class="gallery-item"><img src="img4.jpg" alt="Divine Darshan 4" onerror="this.src='https://source.unsplash.com/300x300/?lingam'"></div>
+                <div class="gallery-item"><img src="img5.jpg" alt="Divine Darshan 5" onerror="this.src='https://source.unsplash.com/300x300/?aarti'"></div>
+            </div>
+        </div>
+
+        <div class="neu-card" data-aos="fade-up">
+            <h2><i class="fas fa-scroll"></i> Ancient Heritage</h2>
+            <p>Established in <strong>1592 by the Maharaja of Patiala</strong>. The temple houses a massive, self-manifested <strong>Swayambhu Lingam</strong>, a center of spiritual energy for centuries.</p>
+        </div>
+
+        <div class="neu-card" data-aos="fade-up">
+            <h2><i class="fas fa-clock"></i> Temple Timings</h2>
+            <div class="timing-row"><span>Morning Darshan</span> <b>04:00 AM - 11:45 AM</b></div>
+            <div class="timing-row"><span>Evening (Summer)</span> <b>02:30 PM - 09:00 PM</b></div>
+            <div class="timing-row"><span style="color:var(--primary)">Monday Special</span> <b>Till 09:30 PM</b></div>
+        </div>
+
+        <div class="neu-card full-width" data-aos="fade-up">
+            <h2><i class="fas fa-map-marker-alt"></i> Temple Location</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                <div style="height: 250px; border-radius: 20px; overflow: hidden; border: 5px solid var(--bg);">
+                    <iframe width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.194784462688!2d76.5866!3d30.5167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32326759905%3A0x6767676767676767!2sNalas%20Shiv%20Mandir!5e0!3m2!1sen!2sin!4v1625634567890!5m2!1sen!2sin"></iframe>
+                </div>
+                <div>
+                    <p>Nalas Village, Rajpura, Patiala, Punjab.</p>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Shanaleshwara+Swayambhu+Temple+Nalas+Rajpura+Punjab" target="_blank" class="neu-btn">
+                        <i class="fas fa-location-arrow"></i> START NAVIGATION
+                    </a>
+                    <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="neu-btn" style="color:#25D366;">
+                        <i class="fab fa-whatsapp"></i> JOIN DIGITAL SANGAT
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="full-width">
+            <p style="font-weight:bold; color:var(--primary)">SHANALESHWARA SUPREME v3.4</p>
+            <p>Ravi Sehgal • "Never Trust, Always Verify"</p>
             <p style="font-size: 0.7rem; opacity: 0.6;">Gemini Safe Guardian AI • <span id="clock"></span></p>
         </footer>
     </div>
@@ -210,90 +236,64 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // --- 1. DYNAMIC THEME ENGINE (Color Morphing) ---
-        const colors = [
-            '#FF9933', // Saffron
-            '#FFD700', // Gold
-            '#FF4500', // Deep Orange
-            '#E67E22', // Carrot
-            '#C0392B'  // Deep Red
-        ];
-        let colorIdx = 0;
+        // --- 1. LIVE SHIVRATRI COUNTDOWN ---
+        const targetDate = new Date("Feb 15, 2026 00:00:00").getTime();
 
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const gap = targetDate - now;
+
+            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d < 10 ? '0'+d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0'+h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0'+m : m;
+            document.getElementById('seconds').innerText = s < 10 ? '0'+s : s;
+        }
+        setInterval(updateCountdown, 1000);
+
+        // --- 2. THEME & EFFECTS ---
+        const colors = ['#FF9933', '#FFD700', '#FF4500'];
+        let colorIdx = 0;
         function morphColor() {
             const root = document.documentElement;
-            const newColor = colors[colorIdx];
-            
-            root.style.setProperty('--primary', newColor);
-            document.getElementById('meta-theme').setAttribute('content', newColor);
-            
+            root.style.setProperty('--primary', colors[colorIdx]);
             colorIdx = (colorIdx + 1) % colors.length;
         }
-        setInterval(morphColor, 8000); // Change every 8 seconds
+        setInterval(morphColor, 8000);
 
-        // --- 2. VIRTUAL BELL & FLOWER SHOWER ---
         function triggerBell() {
-            // Sound
             const audio = document.getElementById('bellAudio');
-            audio.currentTime = 0;
-            audio.play().catch(e => console.log("User interaction required first"));
-
-            // Animation
+            audio.currentTime = 0; audio.play().catch(() => {});
             const bell = document.getElementById('bell');
             bell.classList.add('ringing');
             setTimeout(() => bell.classList.remove('ringing'), 1000);
-
-            // Trigger Flowers
             showerFlowers();
         }
 
         function showerFlowers() {
             const container = document.getElementById('flower-container');
-            const flowers = ['🌸', '🌼', '🌺', '🌹', '🍂'];
-            
-            for(let i=0; i<15; i++) {
+            for(let i=0; i<12; i++) {
                 setTimeout(() => {
                     const el = document.createElement('div');
                     el.classList.add('petal');
-                    el.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+                    el.innerText = ['🌸', '🌼', '🌺'][Math.floor(Math.random()*3)];
                     el.style.left = Math.random() * 100 + 'vw';
-                    el.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    el.style.fontSize = (Math.random() * 1 + 1) + 'rem';
                     container.appendChild(el);
-                    
                     setTimeout(() => el.remove(), 5000);
-                }, i * 100);
+                }, i * 150);
             }
         }
 
-        // --- 3. FLOATING OMs (Background) ---
-        function createOm() {
-            const container = document.getElementById('om-container');
-            if(container.childElementCount > 15) return; // Limit elements
-
-            const el = document.createElement('div');
-            el.classList.add('floating-om');
-            el.innerText = 'ॐ';
-            el.style.left = Math.random() * 95 + '%';
-            el.style.fontSize = (Math.random() * 2 + 1) + 'rem';
-            el.style.animationDuration = (Math.random() * 10 + 10) + 's'; // Slow float
-            
-            container.appendChild(el);
-            setTimeout(() => el.remove(), 20000);
-        }
-        setInterval(createOm, 2500);
-
-        // --- 4. CLOCK ---
         function updateClock() {
-            const now = new Date();
-            document.getElementById('clock').innerText = now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+            document.getElementById('clock').innerText = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
         }
         setInterval(updateClock, 1000);
+        updateCountdown();
         updateClock();
-
-        // Initial Flower Shower on Load
-        setTimeout(showerFlowers, 1000);
-
     </script>
 </body>
 </html>
