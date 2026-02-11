@@ -2,18 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#FF9933">
     
-    <title>Shanaleshwara Swayambhu | Official App</title>
-    
+    <title>Shanaleshwara Swayambhu | Official</title>
     <meta property="og:title" content="Shanaleshwara Swayambhu Temple">
-    <meta property="og:description" content="600 Years of Heritage. Experience the Divine Energy.">
     <meta property="og:image" content="https://shanaleshwara.vercel.app/favicon.png">
-    <meta property="og:image:width" content="300">
-    <meta property="og:image:height" content="300">
+    <meta property="og:description" content="Divine Experience & Heritage since 1592.">
+    
     <link rel="icon" type="image/png" href="favicon.png">
-
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&family=Yantra+Manav:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -22,140 +19,217 @@
         :root {
             --primary: #FF9933;
             --gold: #FFD700;
-            --glow: rgba(255, 153, 51, 0.6);
-            --text-dark: #2c2c2c;
+            --glow: rgba(255, 153, 51, 0.5);
+            --bg-color: #fdfbf7;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        /* 1. AUTOMATIC VIBRANT COLOR CHANGE */
+        /* 1. COLOR CHANGING BACKGROUND */
         body {
             margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(-45deg, #fffcf5, #ffe0b3, #fff0e6, #fff9f0);
+            background: linear-gradient(-45deg, #fdfbf7, #fff5e6, #fffcf0, #fff9f2);
             background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            color: var(--text-dark);
+            animation: gradientBG 15s ease infinite;
             overflow-x: hidden;
         }
-
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* 2. GLOWING ELEMENTS */
-        .glow-text { text-shadow: 0 0 10px var(--glow); }
+        /* 2. FLYING OM LAYER */
+        #bg-om-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .bg-om { position: absolute; color: var(--primary); opacity: 0.08; font-family: 'Yantra Manav'; animation: floatUp 20s linear infinite; }
+        @keyframes floatUp { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+
+        /* 3. FLOWER RAIN LAYER */
+        #flower-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; pointer-events: none; }
+        .petal { position: absolute; font-size: 1.5rem; animation: drop 4s linear forwards; }
+        @keyframes drop { to { transform: translateY(110vh) rotate(720deg); } }
+
+        /* 4. LAYOUT (Desktop Friendly) */
+        .main-wrapper {
+            position: relative; z-index: 10;
+            max-width: 1000px; margin: 0 auto; padding: 20px;
+            display: grid; grid-template-columns: 1fr; gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .main-wrapper { grid-template-columns: 1fr 1fr; padding: 40px; }
+            .full-span { grid-column: span 2; }
+        }
+
+        /* 5. GLOWING CARDS */
         .card {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08), inset 0 0 15px var(--glow);
             padding: 25px;
-            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05), 0 0 15px var(--glow);
             border: 1px solid rgba(255, 153, 51, 0.2);
+            transition: 0.3s;
         }
 
-        /* 3. OM HEADER GLOW */
+        /* 6. HEADER & OM GLOW */
+        header { text-align: center; }
         .om-main {
             width: 100px; height: 100px; margin: 0 auto 15px;
             border-radius: 50%; background: #fff;
-            box-shadow: 0 0 20px var(--primary), inset 0 0 10px var(--primary);
+            box-shadow: 0 0 20px var(--primary);
             display: flex; align-items: center; justify-content: center;
-            font-size: 3.5rem; color: var(--primary); font-family: 'Yantra Manav';
-            animation: pulseGlow 2s infinite;
+            font-size: 3.5rem; color: var(--primary); cursor: pointer;
+            animation: pulse 2s infinite;
         }
+        @keyframes pulse { 0% { box-shadow: 0 0 15px var(--primary); } 50% { box-shadow: 0 0 30px var(--primary); } 100% { box-shadow: 0 0 15px var(--primary); } }
 
-        @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 20px var(--primary); }
-            50% { transform: scale(1.05); box-shadow: 0 0 35px var(--primary); }
-            100% { transform: scale(1); box-shadow: 0 0 20px var(--primary); }
-        }
+        /* GALLERY */
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
+        .gallery-img { width: 100%; height: 80px; object-fit: cover; border-radius: 12px; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
+        .gallery-img:hover { border-color: var(--primary); transform: scale(1.05); }
 
-        /* 4. MAP FIX */
-        .map-container {
-            height: 200px; border-radius: 15px; overflow: hidden;
-            border: 3px solid var(--primary); margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        /* LIGHTBOX */
+        #lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; display:none; justify-content:center; align-items:center; flex-direction:column; }
+        #lightbox img { max-width:90%; max-height:80vh; border-radius:10px; border:2px solid var(--primary); }
 
-        /* 5. TIMING SECTION (BOLD & CLEAR) */
-        .timing-row {
-            display: flex; justify-content: space-between;
-            padding: 12px 0; border-bottom: 1px solid rgba(255, 153, 51, 0.1);
-            font-weight: 600; font-size: 0.9rem;
-        }
-
-        .main-wrapper { max-width: 500px; margin: 0 auto; padding: 20px; }
-        header { text-align: center; padding: 30px 0; }
-        h1 { font-family: 'Cinzel', serif; color: #b35900; margin: 10px 0; font-size: 1.5rem; }
-
+        /* BUTTONS */
+        .btn-flex { display: flex; gap: 15px; margin-top: 20px; }
         .btn-action {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+            flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px;
             padding: 15px; border-radius: 50px; background: var(--primary);
-            color: white; text-decoration: none; font-weight: bold;
+            color: white; text-decoration: none; font-weight: bold; font-size: 0.9rem;
             box-shadow: 0 5px 15px var(--glow); transition: 0.3s;
         }
-        .btn-action:active { transform: scale(0.95); }
+        .btn-action.wa { background: #25D366; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
 
-        .timer-box { text-align: center; background: #fff; padding: 10px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .timer-num { display: block; font-size: 1.4rem; font-weight: 900; color: var(--primary); }
+        .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.9rem; font-weight: 600; }
+        
+        /* TIMER */
+        .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; }
+        .t-box { background: #fffaf0; padding: 10px; border-radius: 15px; box-shadow: inset 0 0 10px var(--glow); }
+        .t-num { display: block; font-size: 1.5rem; font-weight: 900; color: var(--primary); }
+
+        footer { text-align: center; padding: 40px; color: #888; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
+    <div id="bg-om-layer"></div>
+    <div id="flower-layer"></div>
+    <audio id="omSound"><source src="https://www.soundjay.com/buttons/sounds/bell-ringing-05.mp3" type="audio/mpeg"></audio>
+    
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="zoom-img" src="">
+        <span style="color:white; margin-top:20px; border:1px solid white; padding:5px 20px; border-radius:20px; cursor:pointer;">CLOSE</span>
+    </div>
+
     <div class="main-wrapper">
-        <header data-aos="zoom-in">
-            <div class="om-main">ॐ</div>
-            <h1 class="glow-text">SHANALESHWARA SWAYAMBHU</h1>
-            <p style="letter-spacing: 2px; color: #888; font-size: 0.7rem;">ANCIENT • DIVINE • PEACE</p>
+        
+        <header class="full-span" data-aos="zoom-in">
+            <div class="om-main" onclick="playEffect()">ॐ</div>
+            <h1 style="font-family:'Cinzel'; color:#b35900; margin:5px 0;">SHANALESHWARA SWAYAMBHU</h1>
+            <p style="letter-spacing:3px; color:#999; font-size:0.7rem;">ANCIENT • DIVINE • PEACE</p>
         </header>
 
-        <div class="card" data-aos="fade-up">
+        <div class="card full-span" data-aos="fade-up">
+            <h3 style="color:var(--primary); margin-top:0;"><i class="fas fa-om"></i> Maha Shivratri 2026</h3>
+            <div class="timer-grid">
+                <div class="t-box"><span class="t-num" id="d">00</span><small>DAYS</small></div>
+                <div class="t-box"><span class="t-num" id="h">00</span><small>HRS</small></div>
+                <div class="t-box"><span class="t-num" id="m">00</span><small>MIN</small></div>
+                <div class="t-box"><span class="t-num" id="s">00</span><small>SEC</small></div>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-right">
+            <h3 style="color:var(--primary); margin-top:0;"><i class="fas fa-history"></i> Our History</h3>
+            <p style="font-size:0.85rem; line-height:1.6; margin:0;">Established in <b>1592</b> by the Maharaja of Patiala, this temple features a natural <b>Swayambhu Lingam</b> that has blessed seekers for over 600 years.</p>
+        </div>
+
+        <div class="card" data-aos="fade-left">
             <h3 style="color:var(--primary); margin-top:0;"><i class="fas fa-clock"></i> Temple Timings</h3>
-            <div class="timing-row"><span>Morning Aarti</span><span style="color:var(--primary);">04:30 AM</span></div>
-            <div class="timing-row"><span>General Darshan</span><span style="color:var(--primary);">05:00 AM - 12:00 PM</span></div>
-            <div class="timing-row"><span>Evening Darshan</span><span style="color:var(--primary);">03:00 PM - 09:00 PM</span></div>
+            <div class="row"><span>Morning Darshan</span> <span>05:00 AM - 12:00 PM</span></div>
+            <div class="row"><span>Evening Darshan</span> <span>03:00 PM - 09:00 PM</span></div>
+            <div class="row" style="color:var(--primary)"><span>Monday Special</span> <span>Open till 09:30 PM</span></div>
         </div>
 
         <div class="card" data-aos="fade-up">
-            <h3 style="color:var(--primary); margin-top:0;"><i class="fas fa-calendar-alt"></i> Maha Shivratri 2026</h3>
-            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                <div class="timer-box"><span class="timer-num" id="d">00</span><small>Days</small></div>
-                <div class="timer-box"><span class="timer-num" id="h">00</span><small>Hrs</small></div>
-                <div class="timer-box"><span class="timer-num" id="m">00</span><small>Min</small></div>
-                <div class="timer-box"><span class="timer-num" id="s">00</span><small>Sec</small></div>
+            <h3 style="color:var(--primary); margin-top:0;"><i class="fas fa-images"></i> Divine Gallery</h3>
+            <div class="gallery-grid">
+                <img src="img1.jpg" class="gallery-img" onclick="openZoom(this.src)" onerror="this.src='https://source.unsplash.com/200x200/?shiva'">
+                <img src="img2.jpg" class="gallery-img" onclick="openZoom(this.src)" onerror="this.src='https://source.unsplash.com/200x200/?temple'">
+                <img src="img3.jpg" class="gallery-img" onclick="openZoom(this.src)" onerror="this.src='https://source.unsplash.com/200x200/?god'">
+                <img src="img4.jpg" class="gallery-img" onclick="openZoom(this.src)" onerror="this.src='https://source.unsplash.com/200x200/?india'">
             </div>
         </div>
 
         <div class="card" data-aos="fade-up">
-            <h3 style="color:var(--primary); margin-top:0;"><i class="fas fa-map-marked-alt"></i> Reach the Temple</h3>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3434.664402636737!2d76.6853753!3d30.5870003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fef9300000001%3A0xe5a1837568114f88!2sShanaleshwara%20Swayambhu%20Temple!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <h3 style="color:var(--primary); margin-top:0;"><i class="fas fa-map-marker-alt"></i> Location & Sangat</h3>
+            <div style="height:150px; border-radius:15px; overflow:hidden; border:2px solid #eee;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.472718165038!2d76.7027471!3d30.5073099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc350868f0293%3A0x6a2c222b7c4d375!2sShanaleshwara%20Swayambhu%20Temple!5e0!3m2!1sen!2sin!4v1707640000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <a href="https://maps.app.goo.gl/B9UeR2FsczL3y6966" class="btn-action" target="_blank">
-                <i class="fas fa-location-arrow"></i> OPEN IN GOOGLE MAPS
-            </a>
+            <div class="btn-flex">
+                <a href="https://maps.app.goo.gl/B9UeR2FsczL3y6966" target="_blank" class="btn-action"><i class="fas fa-directions"></i> NAVIGATE</a>
+                <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="btn-action wa"><i class="fab fa-whatsapp"></i> JOIN SANGAT</a>
+            </div>
         </div>
 
-        <footer style="text-align: center; padding: 40px 0; color: #999; font-size: 0.8rem;">
-            <p><strong>Ravi Sehgal</strong><br>"Never Trust, Always Verify"</p>
-            <p id="clock"></p>
+        <footer class="full-span">
+            <p><strong>Shanaleshwara Master v6.0</strong></p>
+            <p>Ravi Sehgal • "Never Trust, Always Verify"</p>
+            <p id="localClock" style="opacity:0.6;"></p>
         </footer>
+
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: true });
+
+        // Flying Om logic
+        function createOm() {
+            const layer = document.getElementById('bg-om-layer');
+            if(layer.childElementCount < 10) {
+                const el = document.createElement('div');
+                el.className = 'bg-om'; el.innerText = 'ॐ';
+                el.style.left = Math.random() * 95 + '%';
+                el.style.fontSize = (Math.random() * 3 + 1) + 'rem';
+                layer.appendChild(el);
+                setTimeout(() => el.remove(), 20000);
+            }
+        }
+        setInterval(createOm, 3000);
+
+        // Flowers & Sound
+        function playEffect() {
+            const audio = document.getElementById('omSound');
+            if(audio) { audio.currentTime = 0; audio.play().catch(e=>{}); }
+            const layer = document.getElementById('flower-layer');
+            const icons = ['🌸','🌼','🌺','🌿'];
+            for(let i=0; i<15; i++) {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.className = 'petal'; p.innerText = icons[Math.floor(Math.random()*4)];
+                    p.style.left = Math.random() * 95 + '%';
+                    p.style.top = '-50px';
+                    layer.appendChild(p);
+                    setTimeout(() => p.remove(), 4000);
+                }, i * 150);
+            }
+        }
+
+        function openZoom(src) {
+            document.getElementById('zoom-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
 
         // Timer
         const target = new Date("Feb 15, 2026 00:00:00").getTime();
         setInterval(() => {
             const now = new Date();
+            document.getElementById('localClock').innerText = now.toLocaleString('en-IN');
             const diff = target - now.getTime();
-            document.getElementById('clock').innerText = now.toLocaleString('en-IN');
-            
             if(diff > 0) {
                 document.getElementById('d').innerText = Math.floor(diff / (1000*60*60*24));
                 document.getElementById('h').innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
