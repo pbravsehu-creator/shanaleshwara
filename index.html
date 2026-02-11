@@ -1,180 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Shanaleshwara</title>
-<meta property="og:title" content="Shanaleshwara" />
-<meta property="og:description" content="Aapki site ka description" />
-<meta property="og:image" content="https://shanaleshwara.vercel.app/favicon.png" />
-<meta property="og:url" content="https://shanaleshwara.vercel.app/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#FF9933">
+    
+    <title>Shanaleshwara Swayambhu Temple | Nalas, Rajpura</title>
+    <meta name="description" content="Official App of Shanaleshwara Swayambhu Temple. 600 Years of Heritage. Home of the Self-Manifested Shivling.">
+    <meta property="og:title" content="Shanaleshwara Swayambhu Temple">
+    <meta property="og:description" content="Darshan, History (1592), and Shivratri 2026 Updates. Join the Digital Sangat.">
+    <meta property="og:image" content="https://shanaleshwara.vercel.app/favicon.png">
+    <meta property="og:image:secure_url" content="https://shanaleshwara.vercel.app/favicon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shanaleshwara Temple">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&family=Yantra+Manav:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --saffron: #FF9933;     
-            --saffron-dark: #cc5200;
-            --glass: rgba(255, 153, 51, 0.08); 
-            --border: rgba(255, 153, 51, 0.25);
-            --text-main: #ffffff;
+            --primary: #FF9933;     /* Saffron */
+            --gold: #FFD700;        /* Gold */
+            --dark: #2c1e0f;        /* Dark Brown text */
+            --glass: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: #000; color: var(--text-main); overflow-x: hidden; padding-bottom: 90px; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        /* DIVINE FLOATING PARTICLES ANIMATION */
-        .bg-animation {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; background: radial-gradient(circle at center, #1a0800 0%, #000 100%);
+        /* 2. DYNAMIC ANIMATED BACKGROUND */
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #FF9933, #fff0e6, #FFD700, #fffcf5);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            color: var(--dark);
+            overflow-x: hidden;
+            padding-bottom: 80px; /* Space for bottom nav */
         }
-        .particle {
-            position: absolute; bottom: -10px; background: var(--saffron);
-            border-radius: 50%; opacity: 0.3; filter: blur(1.5px);
-            animation: rise 8s infinite ease-in;
-        }
-        @keyframes rise {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            50% { opacity: 0.4; }
-            100% { transform: translateY(-100vh) scale(0.4); opacity: 0; }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* LIGHTBOX */
-        #lightbox {
-            position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center;
-        }
-        #lightbox img { max-width: 90%; max-height: 80%; border: 3px solid var(--saffron); border-radius: 10px; }
-        #lightbox .close { position: absolute; top: 30px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
+        /* 3. BACKGROUND LAYERS (Om & Flowers) */
+        #bg-om-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
+        .bg-om { position: absolute; color: var(--primary); opacity: 0.06; font-family: 'Yantra Manav'; animation: floatUp 25s linear infinite; }
+        @keyframes floatUp { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
 
-        /* CONTENT STYLING */
-        h1, h2, h3 { font-family: 'Cinzel', serif; color: var(--saffron); text-align: center; }
-        .hero { height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        .hero h1 { font-size: clamp(2.2rem, 8vw, 4.5rem); text-shadow: 0 0 20px var(--saffron-dark); }
-        
-        .container { max-width: 900px; margin: auto; padding: 20px; }
+        #flower-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
+        .petal { position: absolute; font-size: 1.2rem; top: -50px; animation: drop 4s linear forwards; }
+        @keyframes drop { to { transform: translateY(110vh) rotate(720deg); } }
+
+        /* 4. GLASSMORPHISM UI */
         .glass-card {
-            background: var(--glass); backdrop-filter: blur(15px);
-            border: 1px solid var(--border); border-radius: 20px;
-            padding: 25px; margin-bottom: 30px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
         }
 
-        /* MAP & BUTTONS */
-        .map-container { width: 100%; height: 250px; border-radius: 15px; overflow: hidden; border: 1px solid var(--border); }
-        .action-btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            color: white; text-decoration: none; padding: 15px; border-radius: 50px; 
-            font-weight: bold; margin: 15px 0; transition: 0.3s;
+        .main-wrapper { max-width: 800px; margin: 0 auto; padding: 15px; position: relative; z-index: 5; }
+
+        /* 5. HEADER & BELL */
+        header { text-align: center; padding: 20px 0; }
+        .bell-container {
+            width: 80px; height: 80px; margin: 0 auto 10px;
+            background: radial-gradient(circle, #fff, #ffe6cc);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 20px var(--gold);
+            cursor: pointer;
+            border: 2px solid var(--gold);
+            transition: transform 0.2s;
         }
-        .whatsapp-bg { background: #25D366; box-shadow: 0 0 15px rgba(37, 211, 102, 0.3); }
-        .map-bg { background: #4285F4; box-shadow: 0 0 15px rgba(66, 133, 244, 0.3); }
+        .bell-container:active { transform: scale(0.9); }
+        .bell-icon { font-size: 2.5rem; color: var(--primary); }
+        .ringing { animation: ring 0.5s ease-in-out 3; }
+        @keyframes ring { 0%{transform:rotate(0)} 25%{transform:rotate(15deg)} 50%{transform:rotate(-15deg)} 75%{transform:rotate(5deg)} 100%{transform:rotate(0)} }
 
-        /* GALLERY (4:5 Ratio) */
-        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .gallery-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); cursor: pointer; }
+        h1 { font-family: 'Cinzel', serif; font-size: 1.6rem; color: #cc7a00; margin: 5px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
+        .subtitle { letter-spacing: 2px; font-size: 0.75rem; color: #666; font-weight: 600; text-transform: uppercase; }
 
-        /* TIMINGS */
-        .timing-row { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        /* HEADINGS */
+        h2 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--primary); margin-top: 0; border-bottom: 2px solid #ffe6cc; padding-bottom: 8px; margin-bottom: 15px; }
 
-        /* BOTTOM NAV */
+        /* TIMER & GRID */
+        .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; }
+        .t-box { background: rgba(255,255,255,0.6); padding: 8px; border-radius: 12px; border: 1px solid rgba(255,153,51,0.2); }
+        .t-num { display: block; font-size: 1.4rem; font-weight: 900; color: #cc7a00; font-family: 'Yantra Manav'; }
+        .t-lbl { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* TIMING TABLE */
+        .time-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #ddd; font-size: 0.9rem; }
+        .time-row:last-child { border-bottom: none; }
+        .t-time { font-weight: 700; color: #d35400; }
+
+        /* GALLERY */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .gallery-img { width: 100%; height: 120px; object-fit: cover; border-radius: 12px; border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        /* MAP */
+        .map-frame { width: 100%; height: 200px; border: 0; border-radius: 15px; margin-bottom: 15px; }
+
+        /* 6. BOTTOM NAVIGATION (APP FEEL) */
         .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(10, 4, 0, 0.98);
-            border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 12px 0; z-index: 1000;
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex; justify-content: space-around;
+            padding: 10px 0; z-index: 100;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            border-top: 1px solid var(--gold);
         }
-        .nav-item { color: #888; text-decoration: none; text-align: center; font-size: 0.75rem; }
-        .nav-item.active { color: var(--saffron); }
-        .nav-item i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
+        .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 0.7rem; flex: 1; }
+        .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 4px; transition: 0.3s; }
+        .nav-item.active { color: var(--primary); }
+        .nav-item.active i { transform: translateY(-5px); }
 
-        @media (min-width: 768px) { .bottom-nav { display: none; } .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+        /* SANGAT BUTTON */
+        .btn-sangat {
+            background: #25D366; color: white; border: none;
+            padding: 12px; width: 100%; border-radius: 50px;
+            font-weight: bold; font-size: 1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Lightbox */
+        #lightbox { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:2000; justify-content:center; align-items:center; flex-direction:column;}
+        #lightbox img { max-width:95%; max-height:70vh; border: 3px solid var(--gold); border-radius:10px; }
+        .close-lb { color:white; margin-top:20px; font-size:1.5rem; cursor:pointer; }
+
+        footer { text-align: center; padding: 20px; font-size: 0.75rem; color: #999; margin-bottom: 60px; }
+
     </style>
 </head>
 <body>
 
-    <div class="bg-animation" id="bgAnim"></div>
+    <div id="bg-om-layer"></div>
+    <div id="flower-layer"></div>
+    <audio id="bellSound"><source src="https://assets.mixkit.co/active_storage/sfx/1487/1487-preview.mp3" type="audio/mpeg"></audio>
 
-    <div id="lightbox"><span class="close">×</span><img id="lightboxImg" src=""></div>
-
-    <section id="home" class="hero">
-        <i class="fas fa-om" style="font-size: 4rem; color: var(--saffron); margin-bottom: 20px;"></i>
-        <h1 data-aos="zoom-in">Shanaleshwara<br>Swayambhu Temple</h1>
-        <p style="color: #ccc;">Nalas, Rajpura • A Divine Heritage Since 1592</p>
-    </section>
-
-    <div class="container">
+    <div class="main-wrapper">
         
-        <div class="glass-card" style="border: 2px solid var(--saffron); text-align: center;" data-aos="flip-up">
-            <h3 style="margin-bottom: 10px;"><i class="fas fa-bullhorn"></i> Maha Shivratri 2026</h3>
-            <p>Join us on <strong>15th Feb 2026</strong> for the Grand Fair and Holy Langar Sewa at Nalas Temple.</p>
+        <header data-aos="zoom-in">
+            <div class="bell-container" onclick="ringBell()">
+                <i class="fas fa-bell bell-icon" id="bellIcon"></i>
+            </div>
+            <h1>SHANALESHWARA<br>SWAYAMBHU</h1>
+            <div class="subtitle">ANCIENT • DIVINE • PEACE</div>
+        </header>
+
+        <div class="glass-card" data-aos="fade-up">
+            <h2><i class="fas fa-calendar-alt"></i> Maha Shivratri 2026</h2>
+            <p style="font-size: 0.9rem; margin-bottom:15px;">Join the <strong>3-Day Fair</strong>. Pilgrims start their journey on foot from Rajpura. <em>Langar Sewa available.</em></p>
+            <div class="timer-grid">
+                <div class="t-box"><span class="t-num" id="d">00</span><span class="t-lbl">DAYS</span></div>
+                <div class="t-box"><span class="t-num" id="h">00</span><span class="t-lbl">HRS</span></div>
+                <div class="t-box"><span class="t-num" id="m">00</span><span class="t-lbl">MIN</span></div>
+                <div class="t-box"><span class="t-num" id="s">00</span><span class="t-lbl">SEC</span></div>
+            </div>
         </div>
 
-        <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="action-btn whatsapp-bg">
-            <i class="fab fa-whatsapp"></i> Join WhatsApp Group
-        </a>
+        <div class="glass-card" data-aos="fade-up">
+            <h2><i class="fas fa-om"></i> The Divine Swayambhu</h2>
+            <p><strong>Self-Manifested:</strong> This Lingam is <em>Swayambhu</em> (Self-created). It embodies Shiva's power inherently and needs no <em>Prana Pratishtha</em>.</p>
+            <hr style="border:0; border-top:1px dashed #ccc; margin:15px 0;">
+            <p><small><strong>HISTORY (1592):</strong> Built by the Maharaja of Patiala. Maintained by <strong>Juna Akhara</strong> Sadhus. A center of Guru-Shishya tradition for over 600 years.</small></p>
+        </div>
 
-        <section id="location" class="glass-card" data-aos="fade-up">
-            <h2><i class="fas fa-map-marker-alt"></i> Temple Location</h2>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.472733979853!2d76.5985834!3d30.5055042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fe324466b0a99%3A0xc3457585090f7793!2sShanaleshwar%20Mahadev%20Temple!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <a href="https://maps.app.goo.gl/yQG2f3fCAtV6P3gG9" target="_blank" class="action-btn map-bg">
-                <i class="fas fa-location-arrow"></i> Get Directions on Google Maps
-            </a>
-        </section>
-
-        <section id="history" class="glass-card" data-aos="fade-right">
-            <h2><i class="fas fa-history"></i> Divine History</h2>
-            <p>Built in <strong>1592</strong> by the Maharaja of Patiala, this temple houses a massive <strong>Swayambhu Lingam</strong>. It has been a sacred spot for Sadhus for over 500 years.</p>
-        </section>
-
-        <section id="gallery" class="glass-card" data-aos="zoom-in">
-            <h2><i class="fas fa-images"></i> Darshan Gallery</h2>
-            <div class="gallery-grid">
-                <img src="img1.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 1">
-                <img src="img2.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 2">
-                <img src="img3.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 3">
-                <img src="img4.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 4">
-                <img src="img5.jpg" class="gallery-img" onclick="openLightbox(this.src)" alt="Darshan 5">
-            </div>
-        </section>
-
-        <section id="timings" class="glass-card" data-aos="fade-up">
+        <div class="glass-card" data-aos="fade-up">
             <h2><i class="fas fa-clock"></i> Temple Timings</h2>
-            <div class="timing-row"><span>Morning</span><span>04:00 - 11:45</span></div>
-            <div class="timing-row"><span>Evening (Win)</span><span>14:30 - 20:00</span></div>
-            <div class="timing-row"><span>Monday Special</span><span>Open till 21:30</span></div>
-            <div class="timing-row" style="color:var(--saffron); border:none;"><span>Trayodashi</span><span>04:00 - 23:45</span></div>
-        </section>
+            <div class="time-row"><span>Morning Aarti</span> <span class="t-time">04:00 AM - 11:45 AM</span></div>
+            <div class="time-row"><span>Evening (Winter)</span> <span class="t-time">02:30 PM - 08:00 PM</span></div>
+            <div class="time-row"><span>Evening (Summer)</span> <span class="t-time">02:30 PM - 08:30 PM</span></div>
+            <div class="time-row" style="color:var(--primary)"><span>Monday Special</span> <span class="t-time">Open till 09:30 PM</span></div>
+        </div>
 
-        <footer style="text-align: center; padding: 30px 0; color: #666; font-size: 0.8rem;">
-            <p>Version 2.3 | "Never Trust, Always Verify"<br>Safe Guardian AI • 2026</p>
+        <div class="glass-card" data-aos="fade-up">
+            <h2><i class="fas fa-images"></i> Divine Gallery</h2>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1620619767323-b95a89183081?w=400" class="gallery-img" onclick="openZoom(this.src)">
+                <img src="https://images.unsplash.com/photo-1542397284385-6010376c5337?w=400" class="gallery-img" onclick="openZoom(this.src)">
+                <img src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=400" class="gallery-img" onclick="openZoom(this.src)">
+                <img src="https://images.unsplash.com/photo-1599539311656-78b276707371?w=400" class="gallery-img" onclick="openZoom(this.src)">
+            </div>
+        </div>
+
+        <div class="glass-card" data-aos="fade-up" id="map-section">
+            <h2><i class="fas fa-map-marked-alt"></i> Reach the Temple</h2>
+            <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3436.568778402484!2d76.5746!3d30.5356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32344a6e8d7%3A0x742749553754972!2sNalas%2C%20Punjab!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            
+            <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="btn-sangat">
+                <i class="fab fa-whatsapp"></i> JOIN DIGITAL SANGAT
+            </a>
+        </div>
+
+        <footer>
+            <p><strong>Shanaleshwara Masterpiece v7.0</strong></p>
+            <p>Ravi Sehgal • "Never Trust, Always Verify"</p>
         </footer>
     </div>
 
-    <nav class="bottom-nav">
-        <a href="#home" class="nav-item active"><i class="fas fa-home"></i>Home</a>
-        <a href="#location" class="nav-item"><i class="fas fa-map"></i>Map</a>
-        <a href="#gallery" class="nav-item"><i class="fas fa-images"></i>Gallery</a>
-        <a href="#timings" class="nav-item"><i class="fas fa-clock"></i>Time</a>
-    </nav>
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active" onclick="scrollToTop()"><i class="fas fa-home"></i>Home</a>
+        <a href="#map-section" class="nav-item"><i class="fas fa-map-marker-alt"></i>Map</a>
+        <a href="https://wa.me/?text=Jay%20Shanaleshwara!%20Join%20us:%20https://shanaleshwara.vercel.app" class="nav-item"><i class="fas fa-share-alt"></i>Share</a>
+    </div>
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="zoom-img" src="">
+        <div class="close-lb"><i class="fas fa-times-circle"></i></div>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: false, offset: 50 });
 
-        // Generate Sacred Particles
-        const bg = document.getElementById('bgAnim');
-        for (let i = 0; i < 30; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + '%';
-            p.style.width = p.style.height = Math.random() * 4 + 2 + 'px';
-            p.style.animationDelay = Math.random() * 8 + 's';
-            bg.appendChild(p);
+        // 1. BELL LOGIC (SOUND + HAPTIC + ANIMATION)
+        function ringBell() {
+            // Animation
+            const bell = document.getElementById('bellIcon');
+            bell.classList.add('ringing');
+            setTimeout(() => bell.classList.remove('ringing'), 1500);
+
+            // Sound
+            const audio = document.getElementById('bellSound');
+            if(audio) { audio.currentTime = 0; audio.play().catch(e => console.log('Interact first')); }
+
+            // Haptic (Vibration)
+            if (navigator.vibrate) { navigator.vibrate(200); }
+
+            // Flower Rain
+            createFlowers();
         }
 
-        // Lightbox Function
-        const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightboxImg');
-        function openLightbox(src) { lbImg.src = src; lb.style.display = 'flex'; }
-        lb.onclick = () => lb.style.display = 'none';
+        // 2. FLOWER RAIN
+        function createFlowers() {
+            const layer = document.getElementById('flower-layer');
+            const flowers = ['🌸','🌼','🌺','🍀','🍂'];
+            for(let i=0; i<20; i++) {
+                setTimeout(() => {
+                    const f = document.createElement('div');
+                    f.classList.add('petal');
+                    f.innerText = flowers[Math.floor(Math.random()*flowers.length)];
+                    f.style.left = Math.random() * 95 + '%';
+                    layer.appendChild(f);
+                    setTimeout(() => f.remove(), 4000);
+                }, i * 150);
+            }
+        }
+
+        // 3. FLOATING OM BACKGROUND
+        function floatOm() {
+            const layer = document.getElementById('bg-om-layer');
+            if(layer.childElementCount < 8) {
+                const om = document.createElement('div');
+                om.classList.add('bg-om'); om.innerText = 'ॐ';
+                om.style.left = Math.random() * 90 + '%';
+                om.style.fontSize = (Math.random() * 4 + 2) + 'rem';
+                layer.appendChild(om);
+                setTimeout(() => om.remove(), 25000);
+            }
+        }
+        setInterval(floatOm, 3000);
+
+        // 4. TIMER LOGIC
+        const targetDate = new Date("Feb 15, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if (diff > 0) {
+                document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            }
+        }, 1000);
+
+        // 5. LIGHTBOX
+        function openZoom(src) {
+            document.getElementById('zoom-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
     </script>
 </body>
 </html>
-
-
