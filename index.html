@@ -3,334 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" id="meta-theme" content="#FF9933">
+    <meta name="theme-color" content="#FF9933">
     
-    <title>Shanaleshwara Swayambhu | Supreme v3.6</title>
+    <title>Shanaleshwara Swayambhu | Official App</title>
+    <meta name="description" content="Official App of Shanaleshwara Swayambhu Temple, Nalas. Live Darshan & Shivratri 2026 Updates.">
     
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shanaleshwara.vercel.app/">
     <meta property="og:title" content="Shanaleshwara Swayambhu Temple">
-    <meta property="og:description" content="Official App: 600-year-old Swayambhu Shivling, Nalas. Maha Shivratri 2026 Updates.">
-    <meta property="og:image" content="favicon.png">
-    
+    <meta property="og:description" content="Darshan, Aarti & Shivratri 2026. Join the Digital Sangat.">
+    <meta property="og:image" content="https://shanaleshwara.vercel.app/favicon.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+
     <link rel="icon" type="image/png" href="favicon.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&family=Yantra+Manav:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&family=Yantra+Manav:wght@500;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        /* --- PROFESSIONAL VARIABLES --- */
         :root {
-            /* Eye-Comfort Palette (Soft Warm Tones) */
-            --bg: #fcf9f2; /* Soft Cream instead of Gray */
-            --neu-light: #ffffff;
-            --neu-dark: #e0dacc; /* Warmer shadow */
-            
-            --text-main: #5a4a42; /* Soft Brown instead of Black */
-            --text-light: #8c7b70;
-            
-            --primary: #FF9933; /* Saffron */
-            --gold: #d4af37;
+            --bg-color: #fdfbf7; /* Off-white for eye comfort */
+            --primary: #FF9933;  /* Saffron */
+            --primary-dark: #cc7a00;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --shadow-light: #ffffff;
+            --shadow-dark: #d9d9d9;
+            --glass-border: rgba(255, 153, 51, 0.2);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        body { 
-            margin: 0; padding: 0; 
-            background-color: var(--bg); 
-            color: var(--text-main);
-            font-family: 'Poppins', sans-serif; 
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            transition: background 0.5s ease;
         }
 
-        /* --- 2. BACKGROUND ANIMATIONS (Restored & Softened) --- */
-        #flower-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
-        .petal { position: absolute; top: -10px; font-size: 1.5rem; animation: fall linear forwards; opacity: 0.8; }
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        /* --- 2. BACKGROUND LAYERS (FIXED) --- */
+        /* Layer 1: Floating OM (Back) */
+        #bg-om-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; overflow: hidden;
+        }
+        .bg-om {
+            position: absolute; color: var(--primary); opacity: 0.05;
+            font-family: 'Yantra Manav'; font-weight: 900;
+            animation: floatUp 25s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.08; }
+            80% { opacity: 0.08; }
+            100% { transform: translateY(-10vh) rotate(20deg); opacity: 0; }
+        }
 
-        #om-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
-        .floating-om { 
-            position: absolute; color: var(--primary); opacity: 0.06; /* Very subtle for eye comfort */
-            font-family: 'Yantra Manav'; font-weight: bold;
-            animation: floatUp linear infinite; 
+        /* Layer 2: Flowers (Front - Triggered) */
+        #flower-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1000; pointer-events: none;
         }
-        @keyframes floatUp { 
-            0% { transform: translateY(105vh) scale(0.8); opacity: 0; } 
-            50% { opacity: 0.08; } 
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } 
+        .petal {
+            position: absolute; font-size: 1.5rem; top: -50px;
+            animation: drop 4s linear forwards;
         }
+        @keyframes drop { to { transform: translateY(110vh) rotate(720deg); } }
 
         /* --- LAYOUT --- */
-        .container { 
-            max-width: 1200px; margin: 0 auto; padding: 20px; 
-            display: grid; grid-template-columns: 1fr; gap: 25px;
+        .main-wrapper {
+            position: relative; z-index: 10; /* Above background */
+            max-width: 1100px; margin: 0 auto; padding: 20px;
+            display: grid; grid-template-columns: 1fr; gap: 30px;
         }
         @media (min-width: 992px) {
-            .container { grid-template-columns: repeat(2, 1fr); padding: 40px; }
-            .full-width { grid-column: span 2; }
+            .main-wrapper { grid-template-columns: 1fr 1fr; padding: 40px; }
+            .full-span { grid-column: span 2; }
         }
 
-        /* --- 5. SOFT NEUMORPHIC CARDS (Less Harsh) --- */
-        .neu-card {
-            background: var(--bg);
-            border-radius: 25px;
-            /* Softer Shadows */
-            box-shadow: 10px 10px 20px var(--neu-dark), -10px -10px 20px var(--neu-light);
-            padding: 30px;
-            transition: 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.4);
+        /* --- NEUMORPHIC CARDS (Stable Design) --- */
+        .card {
+            background: var(--bg-color);
+            border-radius: 20px;
+            box-shadow: 9px 9px 18px var(--shadow-dark), -9px -9px 18px var(--shadow-light);
+            padding: 25px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s ease;
         }
-
-        .neu-btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            width: 100%; padding: 16px; border-radius: 50px;
-            background: var(--bg);
-            box-shadow: 6px 6px 12px var(--neu-dark), -6px -6px 12px var(--neu-light);
-            border: none; color: var(--primary); font-weight: 700; cursor: pointer;
-            transition: 0.2s; text-decoration: none; margin-top: 15px; font-size: 1rem;
-        }
-        .neu-btn:active { box-shadow: inset 4px 4px 8px var(--neu-dark), inset -4px -4px 8px var(--neu-light); transform: scale(0.98); }
-
-        /* --- 1. HEADER & OM SYMBOL --- */
-        .hero { text-align: center; }
-        .om-wrapper {
-            width: 120px; height: 120px; margin: 0 auto 20px;
-            border-radius: 50%; background: var(--bg);
-            box-shadow: 8px 8px 16px var(--neu-dark), -8px -8px 16px var(--neu-light);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; position: relative;
-        }
-        /* Ripple Effect on OM */
-        .om-wrapper::after {
-            content: ''; position: absolute; width: 100%; height: 100%;
-            border-radius: 50%; border: 2px solid var(--primary);
-            opacity: 0; animation: ripple 3s infinite;
-        }
-        @keyframes ripple { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.6); opacity: 0; } }
-
-        .om-text { 
-            font-family: 'Yantra Manav', sans-serif; 
-            font-size: 4.5rem; color: var(--primary); 
-            line-height: 1; margin-top: -10px; /* Center adjustment */
-            transition: transform 0.3s;
-        }
-        .om-active { animation: pulseOm 0.5s ease-in-out; }
-        @keyframes pulseOm { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
-
-        h1 { font-family: 'Cinzel', serif; color: var(--primary); font-size: clamp(1.8rem, 5vw, 3rem); margin: 10px 0; }
         
-        /* --- 4. GALLERY & LIGHTBOX --- */
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px;
+        .btn-action {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 15px; border-radius: 50px;
+            background: var(--bg-color);
+            box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+            border: none; color: var(--primary-dark); font-weight: 600; cursor: pointer;
+            text-decoration: none; margin-top: 15px; transition: 0.2s;
         }
-        .gallery-item {
-            border-radius: 15px; overflow: hidden; height: 120px;
-            box-shadow: 3px 3px 6px var(--neu-dark), -3px -3px 6px var(--neu-light);
-            cursor: zoom-in;
-        }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
-        .gallery-item:hover img { transform: scale(1.1); }
+        .btn-action:active { box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light); transform: translateY(2px); }
 
-        /* Lightbox Modal */
+        /* --- HEADER & OM BUTTON --- */
+        header { text-align: center; }
+        .om-btn {
+            width: 100px; height: 100px; margin: 0 auto 15px;
+            border-radius: 50%; background: var(--bg-color);
+            box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3.5rem; color: var(--primary); font-family: 'Yantra Manav';
+            cursor: pointer; user-select: none;
+        }
+        .om-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary-dark); }
+
+        h1 { font-family: 'Cinzel', serif; color: var(--primary-dark); font-size: 2rem; margin: 10px 0; }
+        h2 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--text-dark); border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 8px; margin-top: 0; }
+
+        /* --- GALLERY & LIGHTBOX --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .gallery-img { 
+            width: 100%; height: 80px; object-fit: cover; border-radius: 10px; 
+            cursor: pointer; box-shadow: 3px 3px 6px var(--shadow-dark); 
+        }
+        /* Zoom Modal */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(20, 10, 0, 0.95); z-index: 2000;
-            display: none; justify-content: center; align-items: center;
-            flex-direction: column; opacity: 0; transition: opacity 0.3s;
+            background: rgba(0,0,0,0.9); z-index: 5000;
+            display: none; justify-content: center; align-items: center; flex-direction: column;
         }
-        #lightbox img { 
-            max-width: 90%; max-height: 80vh; 
-            border: 2px solid var(--primary); border-radius: 10px;
-            box-shadow: 0 0 30px rgba(255, 153, 51, 0.3);
-        }
-        .close-lb { color: white; font-size: 2rem; margin-top: 20px; cursor: pointer; }
+        #lightbox img { max-width: 95%; max-height: 80vh; border: 2px solid var(--primary); border-radius: 10px; }
+        #lightbox span { color: white; margin-top: 20px; font-size: 1.5rem; cursor: pointer; border: 1px solid white; padding: 5px 20px; border-radius: 20px; }
 
-        /* --- SHIVRATRI & TIMERS --- */
-        .countdown-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; margin-top: 15px; }
-        .count-box {
-            background: var(--bg); padding: 8px; border-radius: 12px;
-            box-shadow: inset 2px 2px 5px var(--neu-dark), inset -2px -2px 5px var(--neu-light);
-        }
-        .count-num { display: block; font-size: 1.1rem; font-weight: 700; color: var(--primary); }
-        .count-label { font-size: 0.55rem; text-transform: uppercase; color: var(--text-light); }
+        /* --- TIMER --- */
+        .timer-box { display: flex; justify-content: space-between; text-align: center; margin-top: 15px; }
+        .t-unit { background: var(--bg-color); padding: 10px; border-radius: 10px; box-shadow: inset 3px 3px 6px var(--shadow-dark); width: 23%; }
+        .t-num { display: block; font-weight: bold; color: var(--primary-dark); font-size: 1.2rem; }
+        .t-lbl { font-size: 0.7rem; color: var(--text-gray); }
 
-        .shivratri-highlight { border: 2px solid var(--primary); background: linear-gradient(to bottom right, var(--bg), #fff8e8); }
-
-        .timing-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 12px 0; font-size: 0.95rem; }
-
-        footer { text-align: center; padding: 40px 20px; grid-column: 1 / -1; opacity: 0.7; font-size: 0.8rem; }
+        footer { text-align: center; padding: 40px; font-size: 0.8rem; color: var(--text-gray); }
 
     </style>
 </head>
 <body>
 
-    <div id="flower-container"></div>
-    <div id="om-container"></div>
-    
-    <div id="lightbox" onclick="closeLightbox()">
-        <img id="lb-img" src="">
-        <div class="close-lb"><i class="fas fa-times"></i> Close</div>
-    </div>
+    <div id="bg-om-layer"></div>
+    <div id="flower-layer"></div>
 
-    <audio id="bellAudio">
+    <audio id="omSound" preload="auto">
         <source src="https://www.soundjay.com/buttons/sounds/bell-ringing-05.mp3" type="audio/mpeg">
     </audio>
+    
+    <div id="lightbox" onclick="closeZoom()">
+        <img id="zoom-img" src="">
+        <span>CLOSE ✖</span>
+    </div>
 
-    <div class="container">
+    <div class="main-wrapper">
         
-        <header class="hero full-width" data-aos="zoom-in">
-            <div class="om-wrapper" onclick="triggerOm()">
-                <div class="om-text" id="omSymbol">ॐ</div>
-            </div>
-            <h1>Shanaleshwara Swayambhu</h1>
-            <p style="letter-spacing: 2px; font-weight: 600; color: var(--text-light); font-size: 0.9rem;">DIVINE • ANCIENT • PEACE</p>
+        <header class="full-span" data-aos="zoom-in">
+            <div class="om-btn" onclick="playEffect()">ॐ</div>
+            <h1>Shanaleshwara</h1>
+            <p style="color: var(--text-gray);">SWAYAMBHU • ANCIENT • DIVINE</p>
         </header>
 
-        <div class="neu-card shivratri-highlight" data-aos="fade-right">
-            <h2 style="margin:0;"><i class="fas fa-om"></i> Shivratri 2026</h2>
-            <p><strong>Feb 15, 2026</strong> (Grand Fair & Yatra)</p>
-            <div class="countdown-container" id="timer">
-                <div class="count-box"><span class="count-num" id="days">00</span><span class="count-label">Days</span></div>
-                <div class="count-box"><span class="count-num" id="hours">00</span><span class="count-label">Hrs</span></div>
-                <div class="count-box"><span class="count-num" id="minutes">00</span><span class="count-label">Min</span></div>
-                <div class="count-box"><span class="count-num" id="seconds">00</span><span class="count-label">Sec</span></div>
-            </div>
-            <div style="margin-top:15px; font-size:0.85rem; color: var(--text-light);">
-                Managed by Juna Akhara Foundation
+        <div class="card full-span" style="border-left: 5px solid var(--primary);">
+            <h2><i class="fas fa-calendar-alt"></i> Maha Shivratri 2026</h2>
+            <div class="timer-box">
+                <div class="t-unit"><span class="t-num" id="d">00</span><span class="t-lbl">DAYS</span></div>
+                <div class="t-unit"><span class="t-num" id="h">00</span><span class="t-lbl">HRS</span></div>
+                <div class="t-unit"><span class="t-num" id="m">00</span><span class="t-lbl">MIN</span></div>
+                <div class="t-unit"><span class="t-num" id="s">00</span><span class="t-lbl">SEC</span></div>
             </div>
         </div>
 
-        <div class="neu-card" data-aos="fade-left">
-            <h2><i class="fas fa-images"></i> Divine Gallery</h2>
+        <div class="card" data-aos="fade-right">
+            <h2><i class="fas fa-images"></i> Gallery (Tap to Zoom)</h2>
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox('img1.jpg')"><img src="img1.jpg" onerror="this.src='https://source.unsplash.com/300x300/?temple'"></div>
-                <div class="gallery-item" onclick="openLightbox('img2.jpg')"><img src="img2.jpg" onerror="this.src='https://source.unsplash.com/300x300/?shiva'"></div>
-                <div class="gallery-item" onclick="openLightbox('img3.jpg')"><img src="img3.jpg" onerror="this.src='https://source.unsplash.com/300x300/?lingam'"></div>
-                <div class="gallery-item" onclick="openLightbox('img4.jpg')"><img src="img4.jpg" onerror="this.src='https://source.unsplash.com/300x300/?aarti'"></div>
-            </div>
-            <p style="text-align: center; font-size: 0.8rem; margin-top: 10px; color: var(--text-light);">(Tap image to zoom)</p>
-        </div>
-
-        <div class="neu-card" data-aos="fade-up">
-            <h2><i class="fas fa-scroll"></i> 600 Years of Heritage</h2>
-            <p>Established in <strong>1592</strong> by the Maharaja of Patiala. The <strong>Swayambhu Lingam</strong> here appeared naturally, discovered when a cow showered milk on this spot.</p>
-        </div>
-
-        <div class="neu-card" data-aos="fade-up">
-            <h2><i class="fas fa-clock"></i> Timings</h2>
-            <div class="timing-row"><span>Morning</span> <b>04:00 - 11:45</b></div>
-            <div class="timing-row"><span>Evening</span> <b>02:30 - 09:00</b></div>
-            <div class="timing-row"><span style="color:var(--primary)">Monday</span> <b>Till 09:30 PM</b></div>
-        </div>
-
-        <div class="neu-card full-width" data-aos="fade-up">
-            <h2><i class="fas fa-map-marker-alt"></i> Location: Nalas</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                <div style="height: 250px; border-radius: 20px; overflow: hidden; border: 4px solid var(--bg); box-shadow: inset 2px 2px 5px var(--neu-dark);">
-                    <iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Shanaleshwara+Swayambhu+Temple+Nalas+Rajpura&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-                </div>
-                <div>
-                    <p>Nalas Village, Rajpura, Patiala.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Shanaleshwara+Swayambhu+Temple+Nalas+Rajpura" target="_blank" class="neu-btn">
-                        <i class="fas fa-location-arrow"></i> START NAVIGATION
-                    </a>
-                    <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="neu-btn" style="color:#25D366;">
-                        <i class="fab fa-whatsapp"></i> JOIN WHATSAPP
-                    </a>
-                </div>
+                <img src="img1.jpg" class="gallery-img" onclick="openZoom(this.src)" onerror="this.src='https://source.unsplash.com/100x100/?temple'">
+                <img src="img2.jpg" class="gallery-img" onclick="openZoom(this.src)" onerror="this.src='https://source.unsplash.com/100x100/?shiva'">
+                <img src="img3.jpg" class="gallery-img" onclick="openZoom(this.src)" onerror="this.src='https://source.unsplash.com/100x100/?om'">
+                <img src="img4.jpg" class="gallery-img" onclick="openZoom(this.src)" onerror="this.src='https://source.unsplash.com/100x100/?bell'">
             </div>
         </div>
 
-        <footer class="full-width">
-            <p style="font-weight:bold; color:var(--primary)">SHANALESHWARA v3.6</p>
+        <div class="card" data-aos="fade-left">
+            <h2><i class="fas fa-map-marked-alt"></i> Location</h2>
+            <div style="height: 150px; border-radius: 10px; overflow: hidden; margin-bottom: 10px; border: 2px solid var(--shadow-dark);">
+                <iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3435.564757608144!2d76.666!3d30.566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32326759d99%3A0x6739665063065604!2sNalas%2C%20Punjab!5e0!3m2!1sen!2sin!4v1625000000000!5m2!1sen!2sin"></iframe>
+            </div>
+            <a href="https://goo.gl/maps/YourTempleLocation" target="_blank" class="btn-action">
+                <i class="fas fa-directions"></i> OPEN MAPS
+            </a>
+        </div>
+
+        <footer class="full-span">
+            <p><strong>Shanaleshwara Supreme v4.0</strong></p>
             <p>Ravi Sehgal • "Never Trust, Always Verify"</p>
+            <p id="localTime"></p>
         </footer>
+
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        // 1. INIT ANIMATION LIB
+        AOS.init();
 
-        // --- 4. LIGHTBOX LOGIC ---
-        function openLightbox(src) {
-            const lb = document.getElementById('lightbox');
-            const img = document.getElementById('lb-img');
-            // If local file fails, use placeholder
-            const tempImg = new Image();
-            tempImg.src = src;
-            tempImg.onload = () => { img.src = src; };
-            tempImg.onerror = () => { img.src = 'https://source.unsplash.com/600x800/?temple'; };
-            
-            lb.style.display = 'flex';
-            setTimeout(() => lb.style.opacity = '1', 10);
+        // 2. BACKGROUND OM GENERATOR (Consistent)
+        function generateBgOm() {
+            const container = document.getElementById('bg-om-layer');
+            if(container.childElementCount < 8) { // Max 8 Oms to keep it clean
+                const el = document.createElement('div');
+                el.classList.add('bg-om');
+                el.innerText = 'ॐ';
+                el.style.left = Math.random() * 90 + '%';
+                el.style.fontSize = (Math.random() * 5 + 2) + 'rem'; // Various sizes
+                container.appendChild(el);
+                setTimeout(() => el.remove(), 25000); // Clean up
+            }
         }
-        function closeLightbox() {
-            const lb = document.getElementById('lightbox');
-            lb.style.opacity = '0';
-            setTimeout(() => lb.style.display = 'none', 300);
-        }
+        setInterval(generateBgOm, 3000);
 
-        // --- 1. OM TRIGGER (Replaces Bell) ---
-        function triggerOm() {
+        // 3. SOUND & FLOWER EFFECT
+        function playEffect() {
             // Sound
-            const audio = document.getElementById('bellAudio');
-            if(audio) { audio.currentTime = 0; audio.play().catch(e=>console.log(e)); }
+            const audio = document.getElementById('omSound');
+            if(audio) { audio.currentTime = 0; audio.play().catch(e => console.log('Audio Blocked', e)); }
             
-            // Animation
-            const om = document.getElementById('omSymbol');
-            om.classList.add('om-active');
-            setTimeout(() => om.classList.remove('om-active'), 500);
-
-            showerFlowers();
-        }
-
-        function showerFlowers() {
-            const container = document.getElementById('flower-container');
-            const items = ['🌸', '🌼', '🌺', '🍃'];
-            for(let i=0; i<12; i++) {
+            // Flowers
+            const container = document.getElementById('flower-layer');
+            const icons = ['🌸','🌼','🌺','🌿'];
+            for(let i=0; i<10; i++){
                 setTimeout(() => {
-                    const el = document.createElement('div');
-                    el.classList.add('petal');
-                    el.innerText = items[Math.floor(Math.random()*items.length)];
-                    el.style.left = Math.random() * 95 + 'vw';
-                    el.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    container.appendChild(el);
-                    setTimeout(() => el.remove(), 5000);
-                }, i * 150);
+                    const p = document.createElement('div');
+                    p.classList.add('petal');
+                    p.innerText = icons[Math.floor(Math.random()*icons.length)];
+                    p.style.left = Math.random()*95 + '%';
+                    container.appendChild(p);
+                    setTimeout(()=>p.remove(), 4000);
+                }, i*100);
             }
         }
 
-        // --- 2. FLOATING OM (Background) ---
-        function createOm() {
-            const container = document.getElementById('om-container');
-            if(container.childElementCount > 10) return; // Reduce clutter for eye comfort
-            const el = document.createElement('div');
-            el.classList.add('floating-om');
-            el.innerText = 'ॐ';
-            el.style.left = Math.random() * 95 + '%';
-            el.style.fontSize = (Math.random() * 2 + 1) + 'rem';
-            el.style.animationDuration = (Math.random() * 10 + 20) + 's'; // Slower float
-            container.appendChild(el);
-            setTimeout(() => el.remove(), 25000);
+        // 4. ZOOM FUNCTION
+        function openZoom(src) {
+            document.getElementById('zoom-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
         }
-        setInterval(createOm, 4000);
+        function closeZoom() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
 
-        // --- 5. EYE COMFORT COLOR (Steady, no rapid changes) ---
-        // We set a pleasing Saffron and leave it. No rapid morphing to reduce strain.
-        // If you want slow shifting, we can add it back, but stable is better for eyes.
-
-        // Countdown
-        const targetDate = new Date("Feb 15, 2026 00:00:00").getTime();
+        // 5. TIMER & CLOCK
+        const target = new Date("Feb 15, 2026 00:00:00").getTime();
         setInterval(() => {
-            const now = new Date().getTime();
-            const gap = targetDate - now;
-            if(gap>0){
-                const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-                const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('days').innerText = d;
-                document.getElementById('hours').innerText = h;
-                document.getElementById('minutes').innerText = m;
-                document.getElementById('seconds').innerText = Math.floor((gap % (1000 * 60)) / 1000);
+            const now = new Date();
+            // Clock
+            document.getElementById('localTime').innerText = now.toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'});
+            
+            // Countdown
+            const diff = target - now.getTime();
+            if(diff > 0) {
+                document.getElementById('d').innerText = Math.floor(diff / (1000*60*60*24));
+                document.getElementById('h').innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+                document.getElementById('m').innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
+                document.getElementById('s').innerText = Math.floor((diff % (1000*60)) / 1000);
             }
         }, 1000);
 
