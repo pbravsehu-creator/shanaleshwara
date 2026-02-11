@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" id="meta-theme" content="#FF9933">
     
-    <title>Shanaleshwara Swayambhu | Supreme v3.4</title>
+    <title>Shanaleshwara Swayambhu | Supreme v3.5</title>
     <meta name="description" content="Official App of Shanaleshwara Swayambhu Temple, Nalas. Explore 600 years of divine history, live darshan timings, and Maha Shivratri 2026 updates.">
+    
     <meta property="og:title" content="Shanaleshwara Swayambhu - Official Temple App">
     <meta property="og:description" content="Join the Digital Sangat. Experience the divine energy of the 1592 Historic Temple.">
-    <meta property="og:image" content="favicon.png"> <meta property="og:url" content="https://shanaleshwara.vercel.app/">
+    <meta property="og:image" itemprop="image" content="favicon.png"> 
+    <meta property="og:image:secure_url" content="favicon.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+    <meta property="og:url" content="https://shanaleshwara.vercel.app/">
     <meta property="og:type" content="website">
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&family=Yantra+Manav:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -109,7 +116,7 @@
         h1 { font-family: 'Cinzel', serif; color: var(--primary); font-size: clamp(2rem, 5vw, 3.5rem); margin: 10px 0; }
         h2 { font-family: 'Cinzel', serif; color: var(--primary); border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 10px; margin-top: 0; }
 
-        /* --- GALLERY GRID (FIXED) --- */
+        /* --- GALLERY GRID --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -126,7 +133,7 @@
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .gallery-item:hover img { transform: scale(1.1); }
 
-        /* --- SHIVRATRI COUNTDOWN UI --- */
+        /* --- SHIVRATRI COUNTDOWN --- */
         .countdown-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -144,7 +151,6 @@
         .count-label { font-size: 0.6rem; text-transform: uppercase; color: var(--text-light); }
 
         .shivratri-highlight { border: 2px solid var(--primary); }
-
         .timing-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 12px 0; }
 
         footer { text-align: center; padding: 40px 20px; grid-column: 1 / -1; }
@@ -155,7 +161,10 @@
 
     <div id="flower-container"></div>
     <div id="om-container"></div>
-    <audio id="bellAudio" src="https://www.soundjay.com/buttons/sounds/bell-ringing-05.mp3"></audio>
+    
+    <audio id="bellAudio" preload="auto">
+        <source src="https://www.soundjay.com/buttons/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="container">
         
@@ -187,11 +196,11 @@
         <div class="neu-card" data-aos="fade-left">
             <h2><i class="fas fa-images"></i> Divine Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="img1.jpg" alt="Divine Darshan 1" onerror="this.src='https://source.unsplash.com/300x300/?temple'"></div>
-                <div class="gallery-item"><img src="img2.jpg" alt="Divine Darshan 2" onerror="this.src='https://source.unsplash.com/300x300/?shiva'"></div>
-                <div class="gallery-item"><img src="img3.jpg" alt="Divine Darshan 3" onerror="this.src='https://source.unsplash.com/300x300/?hindu'"></div>
-                <div class="gallery-item"><img src="img4.jpg" alt="Divine Darshan 4" onerror="this.src='https://source.unsplash.com/300x300/?lingam'"></div>
-                <div class="gallery-item"><img src="img5.jpg" alt="Divine Darshan 5" onerror="this.src='https://source.unsplash.com/300x300/?aarti'"></div>
+                <div class="gallery-item"><img src="img1.jpg" alt="Divine 1" onerror="this.src='https://source.unsplash.com/300x300/?temple,shiva'"></div>
+                <div class="gallery-item"><img src="img2.jpg" alt="Divine 2" onerror="this.src='https://source.unsplash.com/300x300/?shiva'"></div>
+                <div class="gallery-item"><img src="img3.jpg" alt="Divine 3" onerror="this.src='https://source.unsplash.com/300x300/?lingam'"></div>
+                <div class="gallery-item"><img src="img4.jpg" alt="Divine 4" onerror="this.src='https://source.unsplash.com/300x300/?india,god'"></div>
+                <div class="gallery-item"><img src="img5.jpg" alt="Divine 5" onerror="this.src='https://source.unsplash.com/300x300/?aarti'"></div>
             </div>
         </div>
 
@@ -211,11 +220,11 @@
             <h2><i class="fas fa-map-marker-alt"></i> Temple Location</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                 <div style="height: 250px; border-radius: 20px; overflow: hidden; border: 5px solid var(--bg);">
-                    <iframe width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.194784462688!2d76.5866!3d30.5167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32326759905%3A0x6767676767676767!2sNalas%20Shiv%20Mandir!5e0!3m2!1sen!2sin!4v1625634567890!5m2!1sen!2sin"></iframe>
+                    <iframe width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/place/Shanaleshwar+Nalas+Shiv+Mandir/data=!4m2!3m1!1s0x0:0x6fc5e884a75c3dc6?sa=X&ved=1t:2428&ictx=111"></iframe>
                 </div>
                 <div>
                     <p>Nalas Village, Rajpura, Patiala, Punjab.</p>
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=Shanaleshwara+Swayambhu+Temple+Nalas+Rajpura+Punjab" target="_blank" class="neu-btn">
+                    <a href="https://www.google.com/maps/place/Shanaleshwar+Nalas+Shiv+Mandir/data=!4m2!3m1!1s0x0:0x6fc5e884a75c3dc6?sa=X&ved=1t:2428&ictx=111" target="_blank" class="neu-btn">
                         <i class="fas fa-location-arrow"></i> START NAVIGATION
                     </a>
                     <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="neu-btn" style="color:#25D366;">
@@ -226,7 +235,7 @@
         </div>
 
         <footer class="full-width">
-            <p style="font-weight:bold; color:var(--primary)">SHANALESHWARA SUPREME v3.4</p>
+            <p style="font-weight:bold; color:var(--primary)">SHANALESHWARA SUPREME v3.5</p>
             <p>Ravi Sehgal • "Never Trust, Always Verify"</p>
             <p style="font-size: 0.7rem; opacity: 0.6;">Gemini Safe Guardian AI • <span id="clock"></span></p>
         </footer>
@@ -238,16 +247,13 @@
 
         // --- 1. LIVE SHIVRATRI COUNTDOWN ---
         const targetDate = new Date("Feb 15, 2026 00:00:00").getTime();
-
         function updateCountdown() {
             const now = new Date().getTime();
             const gap = targetDate - now;
-
             const d = Math.floor(gap / (1000 * 60 * 60 * 24));
             const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((gap % (1000 * 60)) / 1000);
-
             document.getElementById('days').innerText = d < 10 ? '0'+d : d;
             document.getElementById('hours').innerText = h < 10 ? '0'+h : h;
             document.getElementById('minutes').innerText = m < 10 ? '0'+m : m;
@@ -255,38 +261,51 @@
         }
         setInterval(updateCountdown, 1000);
 
-        // --- 2. THEME & EFFECTS ---
-        const colors = ['#FF9933', '#FFD700', '#FF4500'];
-        let colorIdx = 0;
-        function morphColor() {
-            const root = document.documentElement;
-            root.style.setProperty('--primary', colors[colorIdx]);
-            colorIdx = (colorIdx + 1) % colors.length;
-        }
-        setInterval(morphColor, 8000);
-
+        // --- 2. BELL & FLOWERS FIX ---
         function triggerBell() {
             const audio = document.getElementById('bellAudio');
-            audio.currentTime = 0; audio.play().catch(() => {});
+            
+            // Fix for sound not playing
+            if (audio) {
+                audio.currentTime = 0;
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Audio playback failed:", error);
+                    });
+                }
+            }
+
             const bell = document.getElementById('bell');
             bell.classList.add('ringing');
             setTimeout(() => bell.classList.remove('ringing'), 1000);
+            
             showerFlowers();
         }
 
         function showerFlowers() {
             const container = document.getElementById('flower-container');
-            for(let i=0; i<12; i++) {
+            const items = ['🌸', '🌼', '🌺', '🌹', '🍂'];
+            for(let i=0; i<15; i++) {
                 setTimeout(() => {
                     const el = document.createElement('div');
                     el.classList.add('petal');
-                    el.innerText = ['🌸', '🌼', '🌺'][Math.floor(Math.random()*3)];
+                    el.innerText = items[Math.floor(Math.random()*items.length)];
                     el.style.left = Math.random() * 100 + 'vw';
+                    el.style.animationDuration = (Math.random() * 3 + 2) + 's';
                     container.appendChild(el);
                     setTimeout(() => el.remove(), 5000);
-                }, i * 150);
+                }, i * 100);
             }
         }
+
+        // --- 3. THEME & CLOCK ---
+        const colors = ['#FF9933', '#FFD700', '#FF4500'];
+        let colorIdx = 0;
+        setInterval(() => {
+            document.documentElement.style.setProperty('--primary', colors[colorIdx]);
+            colorIdx = (colorIdx + 1) % colors.length;
+        }, 8000);
 
         function updateClock() {
             document.getElementById('clock').innerText = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
