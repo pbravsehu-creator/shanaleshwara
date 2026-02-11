@@ -5,35 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" id="meta-theme" content="#FF9933">
     
-    <title>Shanaleshwara Swayambhu | Supreme v3.5</title>
-    <meta name="description" content="Official App of Shanaleshwara Swayambhu Temple, Nalas. Explore 600 years of divine history, live darshan timings, and Maha Shivratri 2026 updates.">
+    <title>Shanaleshwara Swayambhu | Supreme v3.6</title>
     
-    <meta property="og:title" content="Shanaleshwara Swayambhu - Official Temple App">
-    <meta property="og:description" content="Join the Digital Sangat. Experience the divine energy of the 1592 Historic Temple.">
-    <meta property="og:image" itemprop="image" content="favicon.png"> 
-    <meta property="og:image:secure_url" content="favicon.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="300">
-    <meta property="og:image:height" content="300">
-    <meta property="og:url" content="https://shanaleshwara.vercel.app/">
-    <meta property="og:type" content="website">
-
+    <meta property="og:title" content="Shanaleshwara Swayambhu Temple">
+    <meta property="og:description" content="Official App: 600-year-old Swayambhu Shivling, Nalas. Maha Shivratri 2026 Updates.">
+    <meta property="og:image" content="favicon.png">
+    
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.png">
     
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&family=Yantra+Manav:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&family=Yantra+Manav:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #e6e7ee;
-            --text-main: #444;
-            --text-light: #777;
-            --shadow-light: #ffffff;
-            --shadow-dark: #d1d5db;
-            --primary: #FF9933; 
+            /* Eye-Comfort Palette (Soft Warm Tones) */
+            --bg: #fcf9f2; /* Soft Cream instead of Gray */
+            --neu-light: #ffffff;
+            --neu-dark: #e0dacc; /* Warmer shadow */
+            
+            --text-main: #5a4a42; /* Soft Brown instead of Black */
+            --text-light: #8c7b70;
+            
+            --primary: #FF9933; /* Saffron */
+            --gold: #d4af37;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -44,116 +39,125 @@
             color: var(--text-main);
             font-family: 'Poppins', sans-serif; 
             overflow-x: hidden;
-            transition: all 0.5s ease;
+            transition: background 0.5s ease;
         }
 
-        /* --- BACKGROUND ANIMATIONS --- */
+        /* --- 2. BACKGROUND ANIMATIONS (Restored & Softened) --- */
         #flower-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
-        .petal { position: absolute; top: -10px; font-size: 1.5rem; animation: fall linear forwards; }
+        .petal { position: absolute; top: -10px; font-size: 1.5rem; animation: fall linear forwards; opacity: 0.8; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
         #om-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
         .floating-om { 
-            position: absolute; color: var(--primary); opacity: 0.08; 
+            position: absolute; color: var(--primary); opacity: 0.06; /* Very subtle for eye comfort */
             font-family: 'Yantra Manav'; font-weight: bold;
-            animation: floatUp linear infinite; transition: color 1s;
+            animation: floatUp linear infinite; 
         }
         @keyframes floatUp { 
-            0% { transform: translateY(110vh) scale(0.8); opacity: 0; } 
-            50% { opacity: 0.15; } 
+            0% { transform: translateY(105vh) scale(0.8); opacity: 0; } 
+            50% { opacity: 0.08; } 
             100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } 
         }
 
-        /* --- RESPONSIVE LAYOUT --- */
+        /* --- LAYOUT --- */
         .container { 
-            max-width: 1200px;
-            margin: 0 auto; 
-            padding: 20px; 
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            max-width: 1200px; margin: 0 auto; padding: 20px; 
+            display: grid; grid-template-columns: 1fr; gap: 25px;
         }
-
         @media (min-width: 992px) {
             .container { grid-template-columns: repeat(2, 1fr); padding: 40px; }
             .full-width { grid-column: span 2; }
         }
 
-        /* --- NEUMORPHIC CARDS --- */
+        /* --- 5. SOFT NEUMORPHIC CARDS (Less Harsh) --- */
         .neu-card {
             background: var(--bg);
             border-radius: 25px;
-            box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+            /* Softer Shadows */
+            box-shadow: 10px 10px 20px var(--neu-dark), -10px -10px 20px var(--neu-light);
             padding: 30px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.2);
+            transition: 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.4);
         }
 
         .neu-btn {
             display: flex; align-items: center; justify-content: center; gap: 10px;
-            width: 100%; padding: 18px; border-radius: 50px;
+            width: 100%; padding: 16px; border-radius: 50px;
             background: var(--bg);
-            box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+            box-shadow: 6px 6px 12px var(--neu-dark), -6px -6px 12px var(--neu-light);
             border: none; color: var(--primary); font-weight: 700; cursor: pointer;
-            transition: 0.3s; text-decoration: none; margin-top: 15px;
+            transition: 0.2s; text-decoration: none; margin-top: 15px; font-size: 1rem;
         }
-        .neu-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); transform: scale(0.98); }
+        .neu-btn:active { box-shadow: inset 4px 4px 8px var(--neu-dark), inset -4px -4px 8px var(--neu-light); transform: scale(0.98); }
 
-        /* --- HERO & BELL --- */
+        /* --- 1. HEADER & OM SYMBOL --- */
         .hero { text-align: center; }
-        .bell-wrapper {
-            width: 130px; height: 130px; margin: 0 auto 25px;
+        .om-wrapper {
+            width: 120px; height: 120px; margin: 0 auto 20px;
             border-radius: 50%; background: var(--bg);
-            box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
-            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            box-shadow: 8px 8px 16px var(--neu-dark), -8px -8px 16px var(--neu-light);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; position: relative;
         }
-        .bell-icon { font-size: 4rem; color: var(--primary); transition: color 1s; }
-        .ringing { animation: ringBell 0.5s ease-in-out infinite alternate; }
-        @keyframes ringBell { from { transform: rotate(-20deg); } to { transform: rotate(20deg); } }
+        /* Ripple Effect on OM */
+        .om-wrapper::after {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            border-radius: 50%; border: 2px solid var(--primary);
+            opacity: 0; animation: ripple 3s infinite;
+        }
+        @keyframes ripple { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.6); opacity: 0; } }
 
-        h1 { font-family: 'Cinzel', serif; color: var(--primary); font-size: clamp(2rem, 5vw, 3.5rem); margin: 10px 0; }
-        h2 { font-family: 'Cinzel', serif; color: var(--primary); border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 10px; margin-top: 0; }
+        .om-text { 
+            font-family: 'Yantra Manav', sans-serif; 
+            font-size: 4.5rem; color: var(--primary); 
+            line-height: 1; margin-top: -10px; /* Center adjustment */
+            transition: transform 0.3s;
+        }
+        .om-active { animation: pulseOm 0.5s ease-in-out; }
+        @keyframes pulseOm { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
 
-        /* --- GALLERY GRID --- */
+        h1 { font-family: 'Cinzel', serif; color: var(--primary); font-size: clamp(1.8rem, 5vw, 3rem); margin: 10px 0; }
+        
+        /* --- 4. GALLERY & LIGHTBOX --- */
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            margin-top: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px;
         }
         .gallery-item {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 4px 4px 8px var(--shadow-dark);
-            height: 130px;
-            border: 2px solid var(--bg);
+            border-radius: 15px; overflow: hidden; height: 120px;
+            box-shadow: 3px 3px 6px var(--neu-dark), -3px -3px 6px var(--neu-light);
+            cursor: zoom-in;
         }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
         .gallery-item:hover img { transform: scale(1.1); }
 
-        /* --- SHIVRATRI COUNTDOWN --- */
-        .countdown-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-            text-align: center;
+        /* Lightbox Modal */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(20, 10, 0, 0.95); z-index: 2000;
+            display: none; justify-content: center; align-items: center;
+            flex-direction: column; opacity: 0; transition: opacity 0.3s;
         }
+        #lightbox img { 
+            max-width: 90%; max-height: 80vh; 
+            border: 2px solid var(--primary); border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 153, 51, 0.3);
+        }
+        .close-lb { color: white; font-size: 2rem; margin-top: 20px; cursor: pointer; }
+
+        /* --- SHIVRATRI & TIMERS --- */
+        .countdown-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; margin-top: 15px; }
         .count-box {
-            background: var(--bg);
-            padding: 10px;
-            border-radius: 15px;
-            box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+            background: var(--bg); padding: 8px; border-radius: 12px;
+            box-shadow: inset 2px 2px 5px var(--neu-dark), inset -2px -2px 5px var(--neu-light);
         }
-        .count-num { display: block; font-size: 1.2rem; font-weight: 700; color: var(--primary); }
-        .count-label { font-size: 0.6rem; text-transform: uppercase; color: var(--text-light); }
+        .count-num { display: block; font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+        .count-label { font-size: 0.55rem; text-transform: uppercase; color: var(--text-light); }
 
-        .shivratri-highlight { border: 2px solid var(--primary); }
-        .timing-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 12px 0; }
+        .shivratri-highlight { border: 2px solid var(--primary); background: linear-gradient(to bottom right, var(--bg), #fff8e8); }
 
-        footer { text-align: center; padding: 40px 20px; grid-column: 1 / -1; }
+        .timing-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 12px 0; font-size: 0.95rem; }
+
+        footer { text-align: center; padding: 40px 20px; grid-column: 1 / -1; opacity: 0.7; font-size: 0.8rem; }
 
     </style>
 </head>
@@ -162,82 +166,83 @@
     <div id="flower-container"></div>
     <div id="om-container"></div>
     
-    <audio id="bellAudio" preload="auto">
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lb-img" src="">
+        <div class="close-lb"><i class="fas fa-times"></i> Close</div>
+    </div>
+
+    <audio id="bellAudio">
         <source src="https://www.soundjay.com/buttons/sounds/bell-ringing-05.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
         
         <header class="hero full-width" data-aos="zoom-in">
-            <div class="bell-wrapper" onclick="triggerBell()">
-                <i class="fas fa-bell bell-icon" id="bell"></i>
+            <div class="om-wrapper" onclick="triggerOm()">
+                <div class="om-text" id="omSymbol">ॐ</div>
             </div>
             <h1>Shanaleshwara Swayambhu</h1>
-            <p style="letter-spacing: 3px; font-weight: 600; color: var(--text-light);">DIVINE • ANCIENT • SWAYAMBHU</p>
+            <p style="letter-spacing: 2px; font-weight: 600; color: var(--text-light); font-size: 0.9rem;">DIVINE • ANCIENT • PEACE</p>
         </header>
 
         <div class="neu-card shivratri-highlight" data-aos="fade-right">
-            <h2 style="margin:0;"><i class="fas fa-om"></i> Maha Shivratri 2026</h2>
-            <p><strong>Date:</strong> February 15, 2026</p>
-            
+            <h2 style="margin:0;"><i class="fas fa-om"></i> Shivratri 2026</h2>
+            <p><strong>Feb 15, 2026</strong> (Grand Fair & Yatra)</p>
             <div class="countdown-container" id="timer">
                 <div class="count-box"><span class="count-num" id="days">00</span><span class="count-label">Days</span></div>
                 <div class="count-box"><span class="count-num" id="hours">00</span><span class="count-label">Hrs</span></div>
                 <div class="count-box"><span class="count-num" id="minutes">00</span><span class="count-label">Min</span></div>
                 <div class="count-box"><span class="count-num" id="seconds">00</span><span class="count-label">Sec</span></div>
             </div>
-
-            <div class="timing-row" style="margin-top:20px;">
-                <span>Nishita Kaal Puja</span> <span style="font-weight:700; color: var(--primary);">12:09 AM - 01:00 AM</span>
+            <div style="margin-top:15px; font-size:0.85rem; color: var(--text-light);">
+                Managed by Juna Akhara Foundation
             </div>
-            <p style="margin-top:15px; font-size:0.85rem;">Managed by Juna Akhara Foundation. Join the Grand Fair & Paidat Yatra.</p>
         </div>
 
         <div class="neu-card" data-aos="fade-left">
             <h2><i class="fas fa-images"></i> Divine Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="img1.jpg" alt="Divine 1" onerror="this.src='https://source.unsplash.com/300x300/?temple,shiva'"></div>
-                <div class="gallery-item"><img src="img2.jpg" alt="Divine 2" onerror="this.src='https://source.unsplash.com/300x300/?shiva'"></div>
-                <div class="gallery-item"><img src="img3.jpg" alt="Divine 3" onerror="this.src='https://source.unsplash.com/300x300/?lingam'"></div>
-                <div class="gallery-item"><img src="img4.jpg" alt="Divine 4" onerror="this.src='https://source.unsplash.com/300x300/?india,god'"></div>
-                <div class="gallery-item"><img src="img5.jpg" alt="Divine 5" onerror="this.src='https://source.unsplash.com/300x300/?aarti'"></div>
+                <div class="gallery-item" onclick="openLightbox('img1.jpg')"><img src="img1.jpg" onerror="this.src='https://source.unsplash.com/300x300/?temple'"></div>
+                <div class="gallery-item" onclick="openLightbox('img2.jpg')"><img src="img2.jpg" onerror="this.src='https://source.unsplash.com/300x300/?shiva'"></div>
+                <div class="gallery-item" onclick="openLightbox('img3.jpg')"><img src="img3.jpg" onerror="this.src='https://source.unsplash.com/300x300/?lingam'"></div>
+                <div class="gallery-item" onclick="openLightbox('img4.jpg')"><img src="img4.jpg" onerror="this.src='https://source.unsplash.com/300x300/?aarti'"></div>
             </div>
+            <p style="text-align: center; font-size: 0.8rem; margin-top: 10px; color: var(--text-light);">(Tap image to zoom)</p>
         </div>
 
         <div class="neu-card" data-aos="fade-up">
-            <h2><i class="fas fa-scroll"></i> Ancient Heritage</h2>
-            <p>Established in <strong>1592 by the Maharaja of Patiala</strong>. The temple houses a massive, self-manifested <strong>Swayambhu Lingam</strong>, a center of spiritual energy for centuries.</p>
+            <h2><i class="fas fa-scroll"></i> 600 Years of Heritage</h2>
+            <p>Established in <strong>1592</strong> by the Maharaja of Patiala. The <strong>Swayambhu Lingam</strong> here appeared naturally, discovered when a cow showered milk on this spot.</p>
         </div>
 
         <div class="neu-card" data-aos="fade-up">
-            <h2><i class="fas fa-clock"></i> Temple Timings</h2>
-            <div class="timing-row"><span>Morning Darshan</span> <b>04:00 AM - 11:45 AM</b></div>
-            <div class="timing-row"><span>Evening (Summer)</span> <b>02:30 PM - 09:00 PM</b></div>
-            <div class="timing-row"><span style="color:var(--primary)">Monday Special</span> <b>Till 09:30 PM</b></div>
+            <h2><i class="fas fa-clock"></i> Timings</h2>
+            <div class="timing-row"><span>Morning</span> <b>04:00 - 11:45</b></div>
+            <div class="timing-row"><span>Evening</span> <b>02:30 - 09:00</b></div>
+            <div class="timing-row"><span style="color:var(--primary)">Monday</span> <b>Till 09:30 PM</b></div>
         </div>
 
         <div class="neu-card full-width" data-aos="fade-up">
-            <h2><i class="fas fa-map-marker-alt"></i> Temple Location</h2>
+            <h2><i class="fas fa-map-marker-alt"></i> Location: Nalas</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                <div style="height: 250px; border-radius: 20px; overflow: hidden; border: 5px solid var(--bg);">
-                    <iframe width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/place/Shanaleshwar+Nalas+Shiv+Mandir/data=!4m2!3m1!1s0x0:0x6fc5e884a75c3dc6?sa=X&ved=1t:2428&ictx=111"></iframe>
+                <div style="height: 250px; border-radius: 20px; overflow: hidden; border: 4px solid var(--bg); box-shadow: inset 2px 2px 5px var(--neu-dark);">
+                    <iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Shanaleshwara+Swayambhu+Temple+Nalas+Rajpura&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
                 </div>
                 <div>
-                    <p>Nalas Village, Rajpura, Patiala, Punjab.</p>
-                    <a href="https://www.google.com/maps/place/Shanaleshwar+Nalas+Shiv+Mandir/data=!4m2!3m1!1s0x0:0x6fc5e884a75c3dc6?sa=X&ved=1t:2428&ictx=111" target="_blank" class="neu-btn">
+                    <p>Nalas Village, Rajpura, Patiala.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Shanaleshwara+Swayambhu+Temple+Nalas+Rajpura" target="_blank" class="neu-btn">
                         <i class="fas fa-location-arrow"></i> START NAVIGATION
                     </a>
                     <a href="https://chat.whatsapp.com/HHxUMJwE4Ei2hS6G20ACaT" target="_blank" class="neu-btn" style="color:#25D366;">
-                        <i class="fab fa-whatsapp"></i> JOIN DIGITAL SANGAT
+                        <i class="fab fa-whatsapp"></i> JOIN WHATSAPP
                     </a>
                 </div>
             </div>
         </div>
 
         <footer class="full-width">
-            <p style="font-weight:bold; color:var(--primary)">SHANALESHWARA SUPREME v3.5</p>
+            <p style="font-weight:bold; color:var(--primary)">SHANALESHWARA v3.6</p>
             <p>Ravi Sehgal • "Never Trust, Always Verify"</p>
-            <p style="font-size: 0.7rem; opacity: 0.6;">Gemini Safe Guardian AI • <span id="clock"></span></p>
         </footer>
     </div>
 
@@ -245,74 +250,90 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // --- 1. LIVE SHIVRATRI COUNTDOWN ---
-        const targetDate = new Date("Feb 15, 2026 00:00:00").getTime();
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const gap = targetDate - now;
-            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((gap % (1000 * 60)) / 1000);
-            document.getElementById('days').innerText = d < 10 ? '0'+d : d;
-            document.getElementById('hours').innerText = h < 10 ? '0'+h : h;
-            document.getElementById('minutes').innerText = m < 10 ? '0'+m : m;
-            document.getElementById('seconds').innerText = s < 10 ? '0'+s : s;
+        // --- 4. LIGHTBOX LOGIC ---
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lb-img');
+            // If local file fails, use placeholder
+            const tempImg = new Image();
+            tempImg.src = src;
+            tempImg.onload = () => { img.src = src; };
+            tempImg.onerror = () => { img.src = 'https://source.unsplash.com/600x800/?temple'; };
+            
+            lb.style.display = 'flex';
+            setTimeout(() => lb.style.opacity = '1', 10);
         }
-        setInterval(updateCountdown, 1000);
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            lb.style.opacity = '0';
+            setTimeout(() => lb.style.display = 'none', 300);
+        }
 
-        // --- 2. BELL & FLOWERS FIX ---
-        function triggerBell() {
+        // --- 1. OM TRIGGER (Replaces Bell) ---
+        function triggerOm() {
+            // Sound
             const audio = document.getElementById('bellAudio');
+            if(audio) { audio.currentTime = 0; audio.play().catch(e=>console.log(e)); }
             
-            // Fix for sound not playing
-            if (audio) {
-                audio.currentTime = 0;
-                const playPromise = audio.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.log("Audio playback failed:", error);
-                    });
-                }
-            }
+            // Animation
+            const om = document.getElementById('omSymbol');
+            om.classList.add('om-active');
+            setTimeout(() => om.classList.remove('om-active'), 500);
 
-            const bell = document.getElementById('bell');
-            bell.classList.add('ringing');
-            setTimeout(() => bell.classList.remove('ringing'), 1000);
-            
             showerFlowers();
         }
 
         function showerFlowers() {
             const container = document.getElementById('flower-container');
-            const items = ['🌸', '🌼', '🌺', '🌹', '🍂'];
-            for(let i=0; i<15; i++) {
+            const items = ['🌸', '🌼', '🌺', '🍃'];
+            for(let i=0; i<12; i++) {
                 setTimeout(() => {
                     const el = document.createElement('div');
                     el.classList.add('petal');
                     el.innerText = items[Math.floor(Math.random()*items.length)];
-                    el.style.left = Math.random() * 100 + 'vw';
+                    el.style.left = Math.random() * 95 + 'vw';
                     el.style.animationDuration = (Math.random() * 3 + 2) + 's';
                     container.appendChild(el);
                     setTimeout(() => el.remove(), 5000);
-                }, i * 100);
+                }, i * 150);
             }
         }
 
-        // --- 3. THEME & CLOCK ---
-        const colors = ['#FF9933', '#FFD700', '#FF4500'];
-        let colorIdx = 0;
-        setInterval(() => {
-            document.documentElement.style.setProperty('--primary', colors[colorIdx]);
-            colorIdx = (colorIdx + 1) % colors.length;
-        }, 8000);
-
-        function updateClock() {
-            document.getElementById('clock').innerText = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+        // --- 2. FLOATING OM (Background) ---
+        function createOm() {
+            const container = document.getElementById('om-container');
+            if(container.childElementCount > 10) return; // Reduce clutter for eye comfort
+            const el = document.createElement('div');
+            el.classList.add('floating-om');
+            el.innerText = 'ॐ';
+            el.style.left = Math.random() * 95 + '%';
+            el.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+            el.style.animationDuration = (Math.random() * 10 + 20) + 's'; // Slower float
+            container.appendChild(el);
+            setTimeout(() => el.remove(), 25000);
         }
-        setInterval(updateClock, 1000);
-        updateCountdown();
-        updateClock();
+        setInterval(createOm, 4000);
+
+        // --- 5. EYE COMFORT COLOR (Steady, no rapid changes) ---
+        // We set a pleasing Saffron and leave it. No rapid morphing to reduce strain.
+        // If you want slow shifting, we can add it back, but stable is better for eyes.
+
+        // Countdown
+        const targetDate = new Date("Feb 15, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const gap = targetDate - now;
+            if(gap>0){
+                const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+                const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('days').innerText = d;
+                document.getElementById('hours').innerText = h;
+                document.getElementById('minutes').innerText = m;
+                document.getElementById('seconds').innerText = Math.floor((gap % (1000 * 60)) / 1000);
+            }
+        }, 1000);
+
     </script>
 </body>
 </html>
