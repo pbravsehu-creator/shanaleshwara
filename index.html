@@ -219,6 +219,34 @@
 
         footer { text-align: center; padding: 20px; font-size: 0.75rem; color: #999; margin-bottom: 60px; }
 
+/* --- BOTTOM NAVIGATION STYLES --- */
+
+/* Default State (Inactive) */
+.nav-item {
+    color: #555; /* Grey color when not selected */
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+    
+    /* Smooth Bouncy Animation Transition */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Active State (Selected) */
+.nav-item.active {
+    color: #FF9933 !important; /* Divine Orange Color */
+    transform: translateY(-10px); /* Pop-up Effect (Moves up) */
+    font-weight: bold;
+}
+
+/* Active Icon Styling */
+.nav-item.active i {
+    transform: scale(1.2); /* Icon becomes bigger */
+    filter: drop-shadow(0 0 5px rgba(255, 153, 51, 0.6)); /* Orange Glow */
+}
+        
     </style>
 </head>
 <body>
@@ -394,11 +422,22 @@
 </footer>
     </div>
 
-    <div class="bottom-nav">
-        <a href="#" class="nav-item active" onclick="scrollToTop()"><i class="fas fa-home"></i>Home</a>
-        <a href="#map-section" class="nav-item"><i class="fas fa-map-marker-alt"></i>Map</a>
-        <a href="https://wa.me/?text=Jay%20Shanaleshwara!%20Join%20us:%20https://shanaleshwara.vercel.app" class="nav-item"><i class="fas fa-share-alt"></i>Share</a>
-    </div>
+<div class="bottom-nav">
+    <a href="#" class="nav-item active" onclick="scrollToTop(); setActive(this)">
+        <i class="fas fa-home"></i> Home
+    </a>
+
+    <a href="#map-section" class="nav-item" onclick="setActive(this)">
+        <i class="fas fa-map-marker-alt"></i> Map
+    </a>
+
+    <a href="https://wa.me/?text=Jay%20Shanaleshwara!%20Join%20us:%20https://shanaleshwara.vercel.app" 
+       class="nav-item" 
+       target="_blank" 
+       onclick="setActive(this)">
+        <i class="fas fa-share-alt"></i> Share
+    </a>
+</div>
 
     <div id="lightbox" onclick="this.style.display='none'">
         <img id="zoom-img" src="">
@@ -476,9 +515,23 @@
             document.getElementById('lightbox').style.display = 'flex';
         }
         function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+    /* --- NAVIGATION LOGIC --- */
+
+function setActive(element) {
+    // 1. Remove 'active' class from ALL nav items first
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    // 2. Add 'active' class ONLY to the clicked element
+    element.classList.add('active');
+}
+    
     </script>
 </body>
 </html>
+
 
 
 
