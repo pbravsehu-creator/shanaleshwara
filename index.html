@@ -94,59 +94,77 @@
         h1 { font-family: 'Cinzel', serif; font-size: 1.6rem; color: #cc7a00; margin: 5px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
         .subtitle { letter-spacing: 2px; font-size: 0.75rem; color: #666; font-weight: 600; text-transform: uppercase; }
 
-/* 1. स्क्वायर कंटेनर (Square Box) */
-/* यह तय करता है कि इमेज एक निश्चित वर्ग (Square) क्षेत्र में रहे */
-.shivling-square-box {
-    width: 220px;  /* आप इसे छोटा-बड़ा कर सकते हैं, पर दोनों same रखें */
-    height: 220px; /* ताकि यह एकदम Square रहे */
-    margin: 20px auto; /* सेंटर में लाने के लिए */
+/* =========================================
+   NEW DIVINE CIRCULAR PORTAL STYLES
+========================================= */
+
+/* 1. The Main Container holding everything together */
+.divine-portal-container {
+    position: relative;
+    width: 200px;  /* Adjust size here */
+    height: 200px; /* Keep height same as width for perfect circle */
+    margin: 30px auto; /* Centering and spacing from bell/title */
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    /* border: 1px solid red;  <- इसे हटा दें, यह सिर्फ देखने के लिए है कि बॉक्स कहाँ है */
+    z-index: 1;
 }
 
-/* 2. इमेज और किरणों का जादू (Rays Effect) */
-.shivling-img-rays {
-    max-width: 95%; /* बॉक्स के अंदर फिट रहेगी */
-    max-height: 95%;
-    object-fit: contain; /* इमेज दबेगी नहीं */
+/* 2. The Shivling Image itself (Made Round) */
+.round-shivling-img {
+    width: 90%; /* Slightly smaller so the border shows clearly */
+    height: 90%;
+    object-fit: cover; /* Ensures image fills circle without stretching */
+    border-radius: 50%; /* Makes the square image perfectly round */
+    z-index: 3; /* Sits on top of the glow */
     
-    /* DIVINE RAYS: यह कोड इमेज के आकार से किरणें निकालेगा */
-    /* पहली लेयर: तेज सुनहरी कोर */
-    filter: drop-shadow(0 0 15px rgba(255, 223, 0, 1)) 
-            /* दूसरी लेयर: फैलती हुई केसरिया किरणें */
-            drop-shadow(0 0 30px rgba(255, 140, 0, 0.8))
-            /* तीसरी लेयर: दूर तक जाती धुंधली रोशनी */
-            drop-shadow(0 0 60px rgba(255, 215, 0, 0.5));
-            
-    /* एनीमेशन शुरू करें */
-    animation: divinePulse 3s ease-in-out infinite alternate;
-    transition: transform 0.3s ease;
+    /* Adds depth inside the circle */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2); 
+    border: 2px solid rgba(255, 215, 0, 0.5); /* Thin inner gold ring */
+    background: rgba(255, 230, 150, 0.2); /* Slight bright background if image has transparency */
 }
 
-/* 3. किरणों का धड़कना (Pulsing Animation) */
-@keyframes divinePulse {
-    0% {
-        /* कम रोशनी */
-        filter: drop-shadow(0 0 15px rgba(255, 223, 0, 0.9))
-                drop-shadow(0 0 30px rgba(255, 140, 0, 0.7));
-        transform: scale(1);
-    }
-    100% {
-        /* ज्यादा रोशनी और किरणें */
-        filter: drop-shadow(0 0 25px rgba(255, 223, 0, 1))
-                drop-shadow(0 0 50px rgba(255, 165, 0, 0.9))
-                drop-shadow(0 0 100px rgba(255, 215, 0, 0.6));
-        transform: scale(1.03); /* हल्का सा बड़ा भी होगा */
-    }
+/* 3. The Rotating Animated Border & Glow Effect */
+.rotating-border-glow {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 2;
+    border-radius: 50%;
+    
+    /* THE MAGIC: Conic Gradient for the metallic spinning look */
+    background: conic-gradient(
+        #FFD700, /* Gold */
+        #FF8C00, /* Dark Orange */
+        #FFFACD, /* Light Lemon/White for shine */
+        #FF8C00, /* Dark Orange */
+        #FFD700  /* Back to Gold */
+    );
+    
+    /* Animation: Continuous spinning */
+    animation: spinBorder 4s linear infinite;
 }
 
-/* Hover Effect (Optional): टच करने पर और चमकेगा */
-.shivling-img-rays:hover {
-     filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8)) /* सफेद तेज */
-             drop-shadow(0 0 60px rgba(255, 215, 0, 1));
+/* 4. Adding the Outer Soft "Rays/Aura" (Pseudo-element) */
+.rotating-border-glow::before {
+    content: '';
+    position: absolute;
+    top: -5%; left: -5%; right: -5%; bottom: -5%; /* Slightly larger than parent */
+    z-index: -1;
+    background: inherit; /* Inherits the same conic gradient */
+    border-radius: 50%;
+    filter: blur(25px); /* Blurs the gradient to create soft light rays */
+    opacity: 0.7;
+}
+
+/* Define the spinning animation */
+@keyframes spinBorder {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Optional Hover Effect: Speeds up rotation on touch/mouse over */
+.divine-portal-container:hover .rotating-border-glow {
+    animation-duration: 1.5s; /* Spins faster on hover */
 }
         
         /* HEADINGS */
@@ -215,8 +233,9 @@
             <div class="bell-container" onclick="ringBell()">
                 <i class="fas fa-bell bell-icon" id="bellIcon"></i>
             </div>
-            <div class="shivling-square-box">
-        <img src="shanaleshwara-swayambhu.png" class="shivling-img-rays" alt="ॐ नमः शिवाय">
+<div class="divine-portal-container">
+        <div class="rotating-border-glow"></div>
+        <img src="shanaleshwara-swayambhu.png" class="round-shivling-img" alt="Swayambhu Shivling">
     </div>
             <h1>SHANALESHWARA<br>SWAYAMBHU</h1>
             <div class="subtitle">ANCIENT • DIVINE • PEACE</div>
@@ -460,6 +479,7 @@
     </script>
 </body>
 </html>
+
 
 
 
