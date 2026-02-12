@@ -94,6 +94,61 @@
         h1 { font-family: 'Cinzel', serif; font-size: 1.6rem; color: #cc7a00; margin: 5px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
         .subtitle { letter-spacing: 2px; font-size: 0.75rem; color: #666; font-weight: 600; text-transform: uppercase; }
 
+/* 1. स्क्वायर कंटेनर (Square Box) */
+/* यह तय करता है कि इमेज एक निश्चित वर्ग (Square) क्षेत्र में रहे */
+.shivling-square-box {
+    width: 220px;  /* आप इसे छोटा-बड़ा कर सकते हैं, पर दोनों same रखें */
+    height: 220px; /* ताकि यह एकदम Square रहे */
+    margin: 20px auto; /* सेंटर में लाने के लिए */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* border: 1px solid red;  <- इसे हटा दें, यह सिर्फ देखने के लिए है कि बॉक्स कहाँ है */
+}
+
+/* 2. इमेज और किरणों का जादू (Rays Effect) */
+.shivling-img-rays {
+    max-width: 95%; /* बॉक्स के अंदर फिट रहेगी */
+    max-height: 95%;
+    object-fit: contain; /* इमेज दबेगी नहीं */
+    
+    /* DIVINE RAYS: यह कोड इमेज के आकार से किरणें निकालेगा */
+    /* पहली लेयर: तेज सुनहरी कोर */
+    filter: drop-shadow(0 0 15px rgba(255, 223, 0, 1)) 
+            /* दूसरी लेयर: फैलती हुई केसरिया किरणें */
+            drop-shadow(0 0 30px rgba(255, 140, 0, 0.8))
+            /* तीसरी लेयर: दूर तक जाती धुंधली रोशनी */
+            drop-shadow(0 0 60px rgba(255, 215, 0, 0.5));
+            
+    /* एनीमेशन शुरू करें */
+    animation: divinePulse 3s ease-in-out infinite alternate;
+    transition: transform 0.3s ease;
+}
+
+/* 3. किरणों का धड़कना (Pulsing Animation) */
+@keyframes divinePulse {
+    0% {
+        /* कम रोशनी */
+        filter: drop-shadow(0 0 15px rgba(255, 223, 0, 0.9))
+                drop-shadow(0 0 30px rgba(255, 140, 0, 0.7));
+        transform: scale(1);
+    }
+    100% {
+        /* ज्यादा रोशनी और किरणें */
+        filter: drop-shadow(0 0 25px rgba(255, 223, 0, 1))
+                drop-shadow(0 0 50px rgba(255, 165, 0, 0.9))
+                drop-shadow(0 0 100px rgba(255, 215, 0, 0.6));
+        transform: scale(1.03); /* हल्का सा बड़ा भी होगा */
+    }
+}
+
+/* Hover Effect (Optional): टच करने पर और चमकेगा */
+.shivling-img-rays:hover {
+     filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8)) /* सफेद तेज */
+             drop-shadow(0 0 60px rgba(255, 215, 0, 1));
+}
+        
         /* HEADINGS */
         h2 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--primary); margin-top: 0; border-bottom: 2px solid #ffe6cc; padding-bottom: 8px; margin-bottom: 15px; }
 
@@ -160,6 +215,9 @@
             <div class="bell-container" onclick="ringBell()">
                 <i class="fas fa-bell bell-icon" id="bellIcon"></i>
             </div>
+            <div class="shivling-square-box">
+        <img src="shanaleshwara-swayambhu.png" class="shivling-img-rays" alt="ॐ नमः शिवाय">
+    </div>
             <h1>SHANALESHWARA<br>SWAYAMBHU</h1>
             <div class="subtitle">ANCIENT • DIVINE • PEACE</div>
         </header>
@@ -402,6 +460,7 @@
     </script>
 </body>
 </html>
+
 
 
 
