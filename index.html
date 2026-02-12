@@ -219,32 +219,72 @@
 
         footer { text-align: center; padding: 20px; font-size: 0.75rem; color: #999; margin-bottom: 60px; }
 
-/* --- BOTTOM NAVIGATION STYLES --- */
+/* --- PREMIUM BOTTOM NAVIGATION BAR --- */
 
-/* Default State (Inactive) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98); /* Solid White Base */
+    backdrop-filter: blur(10px); /* Glass Effect */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 0 15px 0; /* Extra padding at bottom for mobile gestures */
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08); /* Soft Shadow upwards */
+    z-index: 1000;
+    border-top-left-radius: 20px; /* Round Corners Top */
+    border-top-right-radius: 20px;
+    border-top: 1px solid rgba(255, 215, 0, 0.3); /* Thin Gold Line at top */
+}
+
+/* Default Icon Style */
 .nav-item {
-    color: #555; /* Grey color when not selected */
+    color: #888; /* Soft Grey */
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 0.8rem;
-    
-    /* Smooth Bouncy Animation Transition */
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative; /* For the Dot positioning */
+}
+
+.nav-item i {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Active State (Selected) */
+/* --- ACTIVE STATE (Selected) --- */
 .nav-item.active {
-    color: #FF9933 !important; /* Divine Orange Color */
-    transform: translateY(-10px); /* Pop-up Effect (Moves up) */
-    font-weight: bold;
+    color: #FF9933 !important; /* Divine Orange */
 }
 
-/* Active Icon Styling */
 .nav-item.active i {
-    transform: scale(1.2); /* Icon becomes bigger */
-    filter: drop-shadow(0 0 5px rgba(255, 153, 51, 0.6)); /* Orange Glow */
+    transform: translateY(-6px); /* Controlled subtle lift */
+    color: #FF9933;
+    filter: drop-shadow(0 4px 6px rgba(255, 153, 51, 0.4)); /* Glowing Icon */
+}
+
+/* The Glowing Dot Indicator */
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Position below text */
+    width: 5px;
+    height: 5px;
+    background-color: #FF9933;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #FF9933;
+    animation: fadeInDot 0.3s ease-in-out;
+}
+
+@keyframes fadeInDot {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
         
     </style>
@@ -531,6 +571,7 @@ function setActive(element) {
     </script>
 </body>
 </html>
+
 
 
 
