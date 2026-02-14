@@ -10,9 +10,7 @@
     <meta property="og:title" content="Shanaleshwara Swayambhu Temple">
     <meta property="og:description" content="NALAS • RAJPURA • PUNJAB">
     <meta property="og:image" content="https://shanaleshwara.vercel.app/favicon.png">
-    <meta property="og:image:secure_url" content="https://shanaleshwara.vercel.app/favicon.png">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Shanaleshwara Temple">
     
     <link rel="icon" type="image/png" href="favicon.png">
 
@@ -32,7 +30,7 @@
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        /* 2. DYNAMIC ANIMATED BACKGROUND */
+        /* DYNAMIC ANIMATED BACKGROUND */
         body {
             margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
@@ -41,7 +39,7 @@
             animation: gradientBG 5s ease infinite;
             color: var(--dark);
             overflow-x: hidden;
-            padding-bottom: 80px; /* Space for bottom nav */
+            padding-bottom: 80px; 
         }
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
@@ -49,16 +47,30 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* 3. BACKGROUND LAYERS (Om & Flowers) */
+        /* BACKGROUND LAYERS (Om Visible Now & Flowers) */
         #bg-om-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
-        .bg-om { position: absolute; color: var(--primary); opacity: 0.06; font-family: 'Yantra Manav'; animation: floatUp 5s linear infinite; }
-        @keyframes floatUp { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+        
+        /* OM VISIBILITY FIX: Increased opacity and set to a darker orange for contrast */
+        .bg-om { 
+            position: absolute; 
+            color: #d35400; 
+            opacity: 0.15; 
+            font-family: 'Yantra Manav'; 
+            animation: floatUp 7s linear infinite; 
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        @keyframes floatUp { 
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0; } 
+            20% { opacity: 0.2; }
+            80% { opacity: 0.2; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; } 
+        }
 
         #flower-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
         .petal { position: absolute; font-size: 1.2rem; top: -50px; animation: drop 4s linear forwards; }
         @keyframes drop { to { transform: translateY(110vh) rotate(720deg); } }
 
-        /* 4. GLASSMORPHISM UI */
+        /* GLASSMORPHISM UI */
         .glass-card {
             background: var(--glass);
             backdrop-filter: blur(12px);
@@ -74,7 +86,7 @@
 
         .main-wrapper { max-width: 800px; margin: 0 auto; padding: 15px; position: relative; z-index: 5; }
 
-        /* 5. HEADER & BELL */
+        /* HEADER & BELL */
         header { text-align: center; padding: 20px 0; }
         .bell-container {
             width: 80px; height: 80px; margin: 0 auto 10px;
@@ -94,87 +106,36 @@
         h1 { font-family: 'Cinzel', serif; font-size: 1.6rem; color: #cc7a00; margin: 5px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
         .subtitle { letter-spacing: 2px; font-size: 0.75rem; color: #666; font-weight: 600; text-transform: uppercase; }
 
-/* =========================================
-   NEW DIVINE CIRCULAR PORTAL STYLES
-========================================= */
-
-/* 1. The Main Container holding everything together */
-.divine-portal-container {
-    position: relative;
-    width: 200px;  /* Adjust size here */
-    height: 200px; /* Keep height same as width for perfect circle */
-    margin: 30px auto; /* Centering and spacing from bell/title */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
-
-/* 2. The Shivling Image itself (Made Round) */
-.round-shivling-img {
-    width: 90%; /* Slightly smaller so the border shows clearly */
-    height: 90%;
-    object-fit: cover; /* Ensures image fills circle without stretching */
-    border-radius: 50%; /* Makes the square image perfectly round */
-    z-index: 3; /* Sits on top of the glow */
-    
-    /* Adds depth inside the circle */
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2); 
-    border: 2px solid rgba(255, 215, 0, 0.5); /* Thin inner gold ring */
-    background: rgba(255, 230, 150, 0.2); /* Slight bright background if image has transparency */
-}
-
-/* 3. The Rotating Animated Border & Glow Effect */
-.rotating-border-glow {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 2;
-    border-radius: 50%;
-    
-    /* THE MAGIC: Conic Gradient for the metallic spinning look */
-    background: conic-gradient(
-        #FFD700, /* Gold */
-        #FF8C00, /* Dark Orange */
-        #FFFACD, /* Light Lemon/White for shine */
-        #FF8C00, /* Dark Orange */
-        #FFD700  /* Back to Gold */
-    );
-    
-    /* Animation: Continuous spinning */
-    animation: spinBorder 4s linear infinite;
-}
-
-/* 4. Adding the Outer Soft "Rays/Aura" (Pseudo-element) */
-.rotating-border-glow::before {
-    content: '';
-    position: absolute;
-    top: -5%; left: -5%; right: -5%; bottom: -5%; /* Slightly larger than parent */
-    z-index: -1;
-    background: inherit; /* Inherits the same conic gradient */
-    border-radius: 50%;
-    filter: blur(25px); /* Blurs the gradient to create soft light rays */
-    opacity: 0.7;
-}
-
-/* Define the spinning animation */
-@keyframes spinBorder {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Optional Hover Effect: Speeds up rotation on touch/mouse over */
-.divine-portal-container:hover .rotating-border-glow {
-    animation-duration: 1.5s; /* Spins faster on hover */
-}
+        /* DIVINE CIRCULAR PORTAL STYLES */
+        .divine-portal-container {
+            position: relative; width: 200px; height: 200px; margin: 30px auto;
+            display: flex; justify-content: center; align-items: center; z-index: 1;
+        }
+        .round-shivling-img {
+            width: 90%; height: 90%; object-fit: cover; border-radius: 50%; z-index: 3;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2); 
+            border: 2px solid rgba(255, 215, 0, 0.5); 
+            background: rgba(255, 230, 150, 0.2);
+        }
+        .rotating-border-glow {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2; border-radius: 50%;
+            background: conic-gradient(#FFD700, #FF8C00, #FFFACD, #FF8C00, #FFD700);
+            animation: spinBorder 4s linear infinite;
+        }
+        .rotating-border-glow::before {
+            content: ''; position: absolute; top: -5%; left: -5%; right: -5%; bottom: -5%;
+            z-index: -1; background: inherit; border-radius: 50%;
+            filter: blur(25px); opacity: 0.7;
+        }
+        @keyframes spinBorder { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .divine-portal-container:hover .rotating-border-glow { animation-duration: 1.5s; }
         
         /* HEADINGS */
         h2 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--primary); margin-top: 0; border-bottom: 2px solid #ffe6cc; padding-bottom: 8px; margin-bottom: 15px; }
 
-        /* TIMER & GRID */
-        .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; }
-        .t-box { background: rgba(255,255,255,0.6); padding: 8px; border-radius: 12px; border: 1px solid rgba(255,153,51,0.2); }
-        .t-num { display: block; font-size: 1.4rem; font-weight: 900; color: #cc7a00; font-family: 'Yantra Manav'; }
-        .t-lbl { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
+        /* TEXT CONTENT */
+        p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 10px; color: #4a3623; }
 
         /* TIMING TABLE */
         .time-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #ddd; font-size: 0.9rem; }
@@ -183,32 +144,31 @@
 
         /* GALLERY */
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .gallery-img { width: 100%; height: 120px; object-fit: cover; border-radius: 12px; border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .gallery-img { width: 100%; height: 120px; object-fit: cover; border-radius: 12px; border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; }
         
         /* MAP */
         .map-frame { width: 100%; height: 200px; border: 0; border-radius: 15px; margin-bottom: 15px; }
 
-        /* 6. BOTTOM NAVIGATION (APP FEEL) */
+        /* BOTTOM NAVIGATION (APP FEEL) */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex; justify-content: space-around;
-            padding: 10px 0; z-index: 100;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
-            border-top: 1px solid var(--gold);
+            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 12px 0 15px 0; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000; border-top-left-radius: 20px; border-top-right-radius: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
         }
-        .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 0.7rem; flex: 1; }
-        .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 4px; transition: 0.3s; }
-        .nav-item.active { color: var(--primary); }
-        .nav-item.active i { transform: translateY(-5px); }
+        .nav-item { color: #888; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.75rem; font-weight: 500; transition: all 0.3s ease; position: relative; }
+        .nav-item i { font-size: 1.4rem; margin-bottom: 4px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .nav-item.active { color: #FF9933 !important; }
+        .nav-item.active i { transform: translateY(-6px); color: #FF9933; filter: drop-shadow(0 4px 6px rgba(255, 153, 51, 0.4)); }
+        .nav-item.active::after { content: ''; position: absolute; bottom: -8px; width: 5px; height: 5px; background-color: #FF9933; border-radius: 50%; box-shadow: 0 0 5px #FF9933; animation: fadeInDot 0.3s ease-in-out; }
+        @keyframes fadeInDot { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         /* SANGAT BUTTON */
         .btn-sangat {
-            background: #25D366; color: white; border: none;
-            padding: 12px; width: 100%; border-radius: 50px;
-            font-weight: bold; font-size: 1rem; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: #25D366; color: white; border: none; padding: 12px; width: 100%; border-radius: 50px;
+            font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
             text-decoration: none; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
         }
 
@@ -217,76 +177,23 @@
         #lightbox img { max-width:95%; max-height:70vh; border: 3px solid var(--gold); border-radius:10px; }
         .close-lb { color:white; margin-top:20px; font-size:1.5rem; cursor:pointer; }
 
-        footer { text-align: center; padding: 20px; font-size: 0.75rem; color: #999; margin-bottom: 60px; }
+        /* FOOTER */
+        .pro-footer {
+            background: rgba(20, 10, 5, 0.9); backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 215, 0, 0.3); padding: 40px 20px 100px 20px;
+            text-align: center; color: #e0e0e0; margin-top: 40px; position: relative; z-index: 2;
+        }
+        .footer-brand { font-family: 'Cinzel', serif; color: #FFD700; font-size: 1.2rem; letter-spacing: 1px; margin-bottom: 5px; }
+        .version-badge { background: linear-gradient(45deg, #FF9933, #FFD700); color: #2c1e0f; padding: 2px 10px; border-radius: 12px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; display: inline-block; margin-bottom: 15px; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+        .footer-desc { font-size: 0.8rem; color: #aaa; max-width: 400px; margin: 0 auto 15px; line-height: 1.4; }
+        .love-line { font-size: 0.85rem; color: #fff; margin: 15px 0; }
+        .heart-beat { color: #ff4d4d; display: inline-block; animation: heartbeat 1.5s infinite; }
+        .signature-block { margin-top: 20px; padding-top: 20px; border-top: 1px dashed rgba(255, 255, 255, 0.1); }
+        .sig-name { color: #FF9933; font-weight: 600; font-size: 0.9rem; }
+        .sig-quote { display: block; font-size: 0.7rem; color: #888; font-style: italic; letter-spacing: 0.5px; margin-top: 2px; }
+        .copyright { font-size: 0.65rem; color: #555; margin-top: 15px; text-transform: uppercase; }
 
-/* --- PREMIUM BOTTOM NAVIGATION BAR --- */
-
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.98); /* Solid White Base */
-    backdrop-filter: blur(10px); /* Glass Effect */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 12px 0 15px 0; /* Extra padding at bottom for mobile gestures */
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08); /* Soft Shadow upwards */
-    z-index: 1000;
-    border-top-left-radius: 20px; /* Round Corners Top */
-    border-top-right-radius: 20px;
-    border-top: 1px solid rgba(255, 215, 0, 0.3); /* Thin Gold Line at top */
-}
-
-/* Default Icon Style */
-.nav-item {
-    color: #888; /* Soft Grey */
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.75rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative; /* For the Dot positioning */
-}
-
-.nav-item i {
-    font-size: 1.4rem;
-    margin-bottom: 4px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* --- ACTIVE STATE (Selected) --- */
-.nav-item.active {
-    color: #FF9933 !important; /* Divine Orange */
-}
-
-.nav-item.active i {
-    transform: translateY(-6px); /* Controlled subtle lift */
-    color: #FF9933;
-    filter: drop-shadow(0 4px 6px rgba(255, 153, 51, 0.4)); /* Glowing Icon */
-}
-
-/* The Glowing Dot Indicator */
-.nav-item.active::after {
-    content: '';
-    position: absolute;
-    bottom: -8px; /* Position below text */
-    width: 5px;
-    height: 5px;
-    background-color: #FF9933;
-    border-radius: 50%;
-    box-shadow: 0 0 5px #FF9933;
-    animation: fadeInDot 0.3s ease-in-out;
-}
-
-@keyframes fadeInDot {
-    from { transform: scale(0); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-        
+        @keyframes heartbeat { 0% { transform: scale(1); } 15% { transform: scale(1.3); } 30% { transform: scale(1); } 45% { transform: scale(1.15); } 60% { transform: scale(1); } }
     </style>
 </head>
 <body>
@@ -301,30 +208,30 @@
             <div class="bell-container" onclick="ringBell()">
                 <i class="fas fa-bell bell-icon" id="bellIcon"></i>
             </div>
-<div class="divine-portal-container">
-        <div class="rotating-border-glow"></div>
-        <img src="shanaleshwara-swayambhu.png" class="round-shivling-img" alt="Swayambhu Shivling">
-    </div>
+            <div class="divine-portal-container">
+                <div class="rotating-border-glow"></div>
+                <img src="shanaleshwara-swayambhu.png" class="round-shivling-img" alt="Swayambhu Shivling">
+            </div>
             <h1>SHANALESHWARA<br>SWAYAMBHU</h1>
             <div class="subtitle">ANCIENT • DIVINE • PEACE</div>
         </header>
 
         <div class="glass-card" data-aos="fade-up">
-            <h2><i class="fas fa-calendar-alt"></i> Maha Shivratri 2026</h2>
-            <p style="font-size: 0.9rem; margin-bottom:15px;">This year, Maha Shivaratri will be celebrated on Sunday, February 15, 2026, <strong>with the Nishita Kaal Puja timings starting from 12:09 AM to 01:01 AM on February 16, 2026,</strong> and Shivaratri Parana timings starting from <strong>06:59 AM to 03:24 PM</strong> on the same day.</em></p>
-            <div class="timer-grid">
-                <div class="t-box"><span class="t-num" id="d">00</span><span class="t-lbl">DAYS</span></div>
-                <div class="t-box"><span class="t-num" id="h">00</span><span class="t-lbl">HRS</span></div>
-                <div class="t-box"><span class="t-num" id="m">00</span><span class="t-lbl">MIN</span></div>
-                <div class="t-box"><span class="t-num" id="s">00</span><span class="t-lbl">SEC</span></div>
-            </div>
+            <h2><i class="fas fa-gopuram"></i> About Temple</h2>
+            <p><strong>Shanaleshwara Swayambhu Temple</strong> (Sanskrit: श्री शानालेश्वर स्वयंभू मन्दिर) is dedicated to the worship of Lord Shiva. "Shanaleshwara" means the sign that is worshiped as Lord Shiva.</p>
+            <p>It is situated 7 Kilometres away in the Nalas village of Rajpura, Punjab. It is maintained by the ascetic sadhus of the Juna Akhara Foundation.</p>
         </div>
 
         <div class="glass-card" data-aos="fade-up">
             <h2><i class="fas fa-om"></i> The Divine Swayambhu</h2>
-            <p><strong>Self-Manifested:</strong> This Lingam is <em>Swayambhu</em> (Self-created). It embodies Shiva's power inherently and needs no <em>Prana Pratishtha</em>.</p>
-            <hr style="border:0; border-top:1px dashed #ccc; margin:15px 0;">
-            <p><small><strong>HISTORY:</strong> According to the legend, <strong>a cow always showered own milk on the lingam. Nalas region was in jungle,</strong> at that time cowherds used to came to feed their cattle's.</small></p>
+            <p>Inside the Shanaleshwara Temple is the Swayambhu lingam of Lord Shiva. Shiva in the lingam form is believed to be Swayambhu.</p>
+            <p>Swayambhu lingams are self-created or natural lingams, discovered in the place where they now stand. Most of these are oval-shaped stones. These lingams do not need a <em>prana pratishtha</em>, because a Swayambhu lingam already inherently embodies the power of Shiva.</p>
+        </div>
+
+        <div class="glass-card" data-aos="fade-up">
+            <h2><i class="fas fa-star"></i> Importance & Festival</h2>
+            <p><strong>Maha Shivaratri</strong> is a great festival here; a three-day fair is held every year and lakhs of people come to ask for a vow.</p>
+            <p>It has been a tradition that on Maha Shivaratri, most of the devotees from this area (near Rajpura) start their journey on foot from their homes to the Shanaleshwara temple, and volunteers serve food to the devotees along the way.</p>
         </div>
 
         <div class="glass-card" data-aos="fade-up">
@@ -337,13 +244,13 @@
 
         <div class="glass-card" data-aos="fade-up">
             <h2><i class="fas fa-images"></i> Divine Gallery</h2>
-<div class="gallery-grid">
-    <img src="img1.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
-    <img src="img2.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
-    <img src="img3.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
-    <img src="img4.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
-    <img src="img5.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
-</div>
+            <div class="gallery-grid">
+                <img src="img1.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
+                <img src="img2.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
+                <img src="img3.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
+                <img src="img4.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
+                <img src="img5.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Shanaleshwara Swayambhu View">
+            </div>
         </div>
 
         <div class="glass-card" data-aos="fade-up" id="map-section">
@@ -355,129 +262,31 @@
             </a>
         </div>
 
-<style>
-    .pro-footer {
-        background: rgba(20, 10, 5, 0.9); /* Dark Premium Background */
-        backdrop-filter: blur(10px);
-        border-top: 1px solid rgba(255, 215, 0, 0.3); /* Gold Border */
-        padding: 40px 20px 100px 20px; /* Bottom padding for mobile nav */
-        text-align: center;
-        color: #e0e0e0;
-        margin-top: 40px;
-        position: relative;
-        z-index: 2;
-    }
-    .footer-brand {
-        font-family: 'Cinzel', serif;
-        color: #FFD700; /* Gold */
-        font-size: 1.2rem;
-        letter-spacing: 1px;
-        margin-bottom: 5px;
-    }
-    .version-badge {
-        background: linear-gradient(45deg, #FF9933, #FFD700);
-        color: #2c1e0f;
-        padding: 2px 10px;
-        border-radius: 12px;
-        font-size: 0.65rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        display: inline-block;
-        margin-bottom: 15px;
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-    }
-    .footer-desc {
-        font-size: 0.8rem;
-        color: #aaa;
-        max-width: 400px;
-        margin: 0 auto 15px;
-        line-height: 1.4;
-    }
-    .love-line {
-        font-size: 0.85rem;
-        color: #fff;
-        margin: 15px 0;
-    }
-    .heart-beat {
-        color: #ff4d4d;
-        display: inline-block;
-        animation: heartbeat 1.5s infinite;
-    }
-    .signature-block {
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px dashed rgba(255, 255, 255, 0.1);
-    }
-    .sig-name {
-        color: #FF9933;
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-    .sig-quote {
-        display: block;
-        font-size: 0.7rem;
-        color: #888;
-        font-style: italic;
-        letter-spacing: 0.5px;
-        margin-top: 2px;
-    }
-    .copyright {
-        font-size: 0.65rem;
-        color: #555;
-        margin-top: 15px;
-        text-transform: uppercase;
-    }
-
-    @keyframes heartbeat {
-        0% { transform: scale(1); }
-        15% { transform: scale(1.3); }
-        30% { transform: scale(1); }
-        45% { transform: scale(1.15); }
-        60% { transform: scale(1); }
-    }
-</style>
-
-<footer class="pro-footer">
-    
-    <div class="footer-brand">SHANALESHWARA DIGITAL</div>
-    <span class="version-badge">v7.0 Masterpiece (Beta)</span>
-
-    <p class="footer-desc">
-        A 100% Non-Profit Charity Initiative dedicated to the preservation of heritage and digital Sewa for devotees.
-    </p>
-
-    <div class="love-line">
-        Coded with <i class="fas fa-heart heart-beat"></i> & Blessings of <strong>Mahadev</strong>
+        <footer class="pro-footer">
+            <div class="footer-brand">SHANALESHWARA DIGITAL</div>
+            <span class="version-badge">v8.0 Masterpiece</span>
+            <p class="footer-desc">A 100% Non-Profit Charity Initiative dedicated to the preservation of heritage and digital Sewa for devotees.</p>
+            <div class="love-line">Coded with <i class="fas fa-heart heart-beat"></i> & Blessings of <strong>Mahadev</strong></div>
+            <div class="signature-block">
+                <div class="sig-name">SHANALESHWARA</div>
+                <span class="sig-quote">"THE SHIVA TEMPLE"</span>
+            </div>
+            <div class="copyright">© 2026 Shanaleshwara Temple, Nalas | All Rights Reserved</div>
+        </footer>
     </div>
 
-    <div class="signature-block">
-        <div class="sig-name">SHANALESHWARA</div>
-        <span class="sig-quote">"THE SHIVA TEMPLE"</span>
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active" onclick="scrollToTop(); setActive(this)">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="#map-section" class="nav-item" onclick="setActive(this)">
+            <i class="fas fa-map-marker-alt"></i> Map
+        </a>
+        <a href="https://wa.me/?text=Jay%20Shanaleshwara!%20Join%20us:%20https://shanaleshwara.vercel.app" 
+           class="nav-item" target="_blank" onclick="setActive(this)">
+            <i class="fas fa-share-alt"></i> Share
+        </a>
     </div>
-
-    <div class="copyright">
-        © 2026 Shanaleshwara Temple, Nalas | All Rights Reserved
-    </div>
-
-</footer>
-    </div>
-
-<div class="bottom-nav">
-    <a href="#" class="nav-item active" onclick="scrollToTop(); setActive(this)">
-        <i class="fas fa-home"></i> Home
-    </a>
-
-    <a href="#map-section" class="nav-item" onclick="setActive(this)">
-        <i class="fas fa-map-marker-alt"></i> Map
-    </a>
-
-    <a href="https://wa.me/?text=Jay%20Shanaleshwara!%20Join%20us:%20https://shanaleshwara.vercel.app" 
-       class="nav-item" 
-       target="_blank" 
-       onclick="setActive(this)">
-        <i class="fas fa-share-alt"></i> Share
-    </a>
-</div>
 
     <div id="lightbox" onclick="this.style.display='none'">
         <img id="zoom-img" src="">
@@ -486,23 +295,19 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize Scroll Animations
         AOS.init({ duration: 800, once: false, offset: 50 });
 
         // 1. BELL LOGIC (SOUND + HAPTIC + ANIMATION)
         function ringBell() {
-            // Animation
             const bell = document.getElementById('bellIcon');
             bell.classList.add('ringing');
             setTimeout(() => bell.classList.remove('ringing'), 1500);
 
-            // Sound
             const audio = document.getElementById('bellSound');
             if(audio) { audio.currentTime = 0; audio.play().catch(e => console.log('Interact first')); }
 
-            // Haptic (Vibration)
             if (navigator.vibrate) { navigator.vibrate(200); }
-
-            // Flower Rain
             createFlowers();
         }
 
@@ -522,65 +327,35 @@
             }
         }
 
-        // 3. FLOATING OM BACKGROUND
+        // 3. FLOATING OM BACKGROUND (Optimized for visibility)
         function floatOm() {
             const layer = document.getElementById('bg-om-layer');
-            if(layer.childElementCount < 8) {
+            if(layer.childElementCount < 10) {
                 const om = document.createElement('div');
-                om.classList.add('bg-om'); om.innerText = 'ॐ';
+                om.classList.add('bg-om'); 
+                om.innerText = 'ॐ';
                 om.style.left = Math.random() * 90 + '%';
-                om.style.fontSize = (Math.random() * 4 + 2) + 'rem';
+                om.style.fontSize = (Math.random() * 4 + 3) + 'rem'; // Slightly larger
                 layer.appendChild(om);
-                setTimeout(() => om.remove(), 25000);
+                setTimeout(() => om.remove(), 7000);
             }
         }
-        setInterval(floatOm, 3000);
+        setInterval(floatOm, 1200); // Faster spawn rate
 
-        // 4. TIMER LOGIC
-        const targetDate = new Date("Feb 15, 2026 00:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            if (diff > 0) {
-                document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-            }
-        }, 1000);
-
-        // 5. LIGHTBOX
+        // 4. LIGHTBOX
         function openZoom(src) {
             document.getElementById('zoom-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
         function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
 
-    /* --- NAVIGATION LOGIC --- */
-
-function setActive(element) {
-    // 1. Remove 'active' class from ALL nav items first
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.remove('active');
-    });
-
-    // 2. Add 'active' class ONLY to the clicked element
-    element.classList.add('active');
-}
-    
+        // 5. NAVIGATION LOGIC
+        function setActive(element) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
