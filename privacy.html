@@ -2,62 +2,167 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Security & Privacy | Shanaleshwara Swayambhu Temple</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- ICONS & FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        :root {
+            /* LIGHT MODE (DEFAULT) */
+            --primary: #FF9933;
+            --secondary: #d35400;
+            --gold: #FFD700;
+            --bg-gradient: linear-gradient(-45deg, #FF9933, #fff0e6, #FFB300, #fffcf5);
+            --text-main: #2c1e0f;
+            --text-light: #666;
+            --glass: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        /* DARK MODE VARIABLES */
+        [data-theme="dark"] {
+            --primary: #FFD700;
+            --secondary: #FF9933;
+            --bg-gradient: linear-gradient(-45deg, #1a1a1a, #2d1f0f, #000000, #2c1e0f);
+            --text-main: #f0f0f5;
+            --text-light: #ccc;
+            --glass: rgba(30, 30, 40, 0.9);
+            --glass-border: rgba(255, 215, 0, 0.2);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body { 
             font-family: 'Poppins', sans-serif; 
-            background: #fffcf5; 
-            color: #2c1e0f; 
+            background: var(--bg-gradient); 
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: var(--text-main); 
             padding: 20px; 
-            line-height: 1.6; 
             margin: 0;
+            min-height: 100vh;
+            transition: 0.5s;
         }
-        h1, h2 { color: #FF9933; }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* CONTAINER */
         .container { 
             max-width: 800px; 
-            margin: 20px auto; 
-            background: white; 
-            padding: 30px; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            border: 1px solid rgba(255, 153, 51, 0.2);
+            margin: 40px auto; 
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: var(--shadow); 
+            border: 1px solid var(--glass-border);
         }
-        a { color: #FF9933; text-decoration: none; }
+
+        /* HEADER & NAVIGATION */
+        .page-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;
+            border-bottom: 2px dashed var(--glass-border); padding-bottom: 20px;
+        }
+
         .back-btn { 
-            display: inline-block; 
-            margin-bottom: 20px; 
+            display: inline-flex; align-items: center; gap: 8px;
             padding: 10px 20px; 
-            background: #FF9933; 
-            color: white; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            box-shadow: 0 4px 6px rgba(255, 153, 51, 0.3);
+            background: linear-gradient(45deg, var(--primary), var(--secondary)); 
+            color: white; border-radius: 50px; 
+            font-weight: bold; text-decoration: none; font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
+        }
+        .back-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+
+        .theme-btn {
+            background: none; border: 2px solid var(--primary); 
+            color: var(--primary); padding: 8px 12px; border-radius: 50%;
+            cursor: pointer; font-size: 1.1rem; transition: 0.3s;
+        }
+        .theme-btn:hover { background: var(--primary); color: white; }
+
+        /* TYPOGRAPHY */
+        h1 { 
+            font-family: 'Cinzel', serif; color: var(--secondary); margin: 0; font-size: 1.8rem; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        [data-theme="dark"] h1 { color: var(--primary); }
+
+        h2 { 
+            color: var(--primary); font-family: 'Cinzel', serif; font-size: 1.2rem; 
+            margin-top: 30px; display: flex; align-items: center; gap: 10px;
+        }
+        
+        p { line-height: 1.8; font-size: 0.95rem; color: var(--text-main); margin-bottom: 15px; }
+
+        /* FOOTER */
+        .footer-note {
+            text-align: center; font-size: 0.8rem; color: var(--text-light);
+            margin-top: 40px; border-top: 1px solid var(--glass-border); padding-top: 20px;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <a href="index.html" class="back-btn">← Back to Home</a>
+        <!-- NAV HEADER -->
+        <div class="page-header">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <button class="theme-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
+        </div>
         
-        <h1>Security & Privacy Policy</h1>
+        <h1><i class="fas fa-shield-alt"></i> Security & Privacy Policy</h1>
         <p><strong>Effective Date:</strong> February 2026</p>
         
-        <h2>1. Information We Collect</h2>
+        <h2><i class="fas fa-user-secret"></i> 1. Information We Collect</h2>
         <p>The Shanaleshwara Swayambhu Temple website is a 100% non-profit digital sewa initiative. We respect your privacy. We do not require you to create an account, and we do not collect sensitive personal data directly through this website.</p>
         
-        <h2>2. Third-Party Links & Services</h2>
+        <h2><i class="fas fa-external-link-alt"></i> 2. Third-Party Links & Services</h2>
         <p>Our website utilizes third-party services such as Google Maps for navigation and WhatsApp for our Digital Sangat. When you click these external links, you are subject to the respective privacy and security policies of Google and WhatsApp.</p>
         
-        <h2>3. Data Security</h2>
-        <p>We prioritize your digital safety. We apply standard web security practices to ensure your browsing experience is secure. As a matter of personal security, we encourage all devotees to follow the principle of "Never Trust, Always Verify" and ensure they are visiting the official domain.</p>
+        <h2><i class="fas fa-lock"></i> 3. Data Security</h2>
+        <p>We prioritize your digital safety. We apply standard web security practices to ensure your browsing experience is secure. As a matter of personal security, we encourage all devotees to follow the principle of <strong>"Never Trust, Always Verify"</strong> and ensure they are visiting the official domain.</p>
         
-        <h2>4. Changes to This Policy</h2>
+        <h2><i class="fas fa-sync-alt"></i> 4. Changes to This Policy</h2>
         <p>We may update our Privacy Policy periodically to reflect any changes in our digital services. All updates will be posted on this page.</p>
 
-        <hr style="border: 0; border-top: 1px dashed #ddd; margin: 30px 0;">
-        <p style="text-align: center; font-size: 0.85rem; color: #888;">© 2026 Shanaleshwara Temple | Coded with Blessings of Mahadev</p>
+        <div class="footer-note">
+            © 2026 Shanaleshwara Temple | Coded with Blessings of Mahadev<br>
+            <span style="font-size: 0.7rem; opacity: 0.8;">Cyber Secure Initiative</span>
+        </div>
     </div>
+
+    <script>
+        // THEME LOGIC (SYNCED WITH INDEX PAGE)
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Apply saved theme immediately on load
+        if (localStorage.getItem('theme') === 'dark') {
+            toggleTheme(); 
+        }
+    </script>
 </body>
 </html>
