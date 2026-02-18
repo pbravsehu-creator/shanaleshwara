@@ -11,7 +11,6 @@
 
     <style>
         :root {
-            /* LIGHT MODE (DEFAULT) */
             --primary: #FF9933;
             --secondary: #d35400;
             --gold: #FFD700;
@@ -23,7 +22,6 @@
             --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
         }
 
-        /* DARK MODE VARIABLES */
         [data-theme="dark"] {
             --primary: #FFD700;
             --secondary: #FF9933;
@@ -54,7 +52,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* CONTAINER */
         .container { 
             max-width: 800px; 
             margin: 40px auto; 
@@ -66,7 +63,6 @@
             border: 1px solid var(--glass-border);
         }
 
-        /* HEADER & NAVIGATION */
         .page-header {
             display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;
             border-bottom: 2px dashed var(--glass-border); padding-bottom: 20px;
@@ -89,21 +85,20 @@
         }
         .theme-btn:hover { background: var(--primary); color: white; }
 
-        /* TYPOGRAPHY */
-        h1 { 
-            font-family: 'Cinzel', serif; color: var(--secondary); margin: 0; font-size: 1.8rem; 
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
+        h1 { font-family: 'Cinzel', serif; color: var(--secondary); margin: 0; font-size: 1.8rem; }
         [data-theme="dark"] h1 { color: var(--primary); }
 
-        h2 { 
-            color: var(--primary); font-family: 'Cinzel', serif; font-size: 1.2rem; 
-            margin-top: 30px; display: flex; align-items: center; gap: 10px;
-        }
-        
+        h2 { color: var(--primary); font-family: 'Cinzel', serif; font-size: 1.2rem; margin-top: 30px; display: flex; align-items: center; gap: 10px; }
         p { line-height: 1.8; font-size: 0.95rem; color: var(--text-main); margin-bottom: 15px; }
+        
+        .highlight-box {
+            background: rgba(255, 153, 51, 0.1);
+            padding: 15px;
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
 
-        /* FOOTER */
         .footer-note {
             text-align: center; font-size: 0.8rem; color: var(--text-light);
             margin-top: 40px; border-top: 1px solid var(--glass-border); padding-top: 20px;
@@ -113,7 +108,6 @@
 <body>
 
     <div class="container">
-        <!-- NAV HEADER -->
         <div class="page-header">
             <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
             <button class="theme-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
@@ -121,27 +115,30 @@
         
         <h1><i class="fas fa-shield-alt"></i> Security & Privacy Policy</h1>
         <p><strong>Effective Date:</strong> February 2026</p>
+
+        <div class="highlight-box">
+            <p><strong>Zero-Data Initiative:</strong> Shanaleshwara.vercel.app is a static informational website. We do not store, process, or sell any user data. Your presence here is completely anonymous.</p>
+        </div>
         
-        <h2><i class="fas fa-user-secret"></i> 1. Information We Collect</h2>
-        <p>The Shanaleshwara Swayambhu Temple website is a 100% non-profit digital sewa initiative. We respect your privacy. We do not require you to create an account, and we do not collect sensitive personal data directly through this website.</p>
+        <h2><i class="fas fa-database"></i> 1. No Data Collection</h2>
+        <p>Our website is hosted on the Vercel platform as a static project. We do not have a backend database or registration forms. This means we do not collect names, email addresses, or phone numbers from our visitors.</p>
         
-        <h2><i class="fas fa-external-link-alt"></i> 2. Third-Party Links & Services</h2>
-        <p>Our website utilizes third-party services such as Google Maps for navigation and WhatsApp for our Digital Sangat. When you click these external links, you are subject to the respective privacy and security policies of Google and WhatsApp.</p>
+        <h2><i class="fas fa-cloud"></i> 2. Hosting & Infrastructure</h2>
+        <p>Since this site is hosted via <strong>Vercel</strong>, it benefits from Vercel's global edge network security. While Vercel may collect standard technical logs (such as IP addresses and browser types) to ensure site stability and prevent DDoS attacks, this information is managed by Vercel and is not accessible or used by the temple administration for tracking purposes.</p>
         
-        <h2><i class="fas fa-lock"></i> 3. Data Security</h2>
-        <p>We prioritize your digital safety. We apply standard web security practices to ensure your browsing experience is secure. As a matter of personal security, we encourage all devotees to follow the principle of <strong>"Never Trust, Always Verify"</strong> and ensure they are visiting the official domain.</p>
+        <h2><i class="fas fa-external-link-alt"></i> 3. Third-Party Interactions</h2>
+        <p>We provide links to <strong>Google Maps</strong> (for directions) and <strong>WhatsApp</strong> (for the Digital Sangat group). Once you leave our domain, your data is governed by the privacy policies of those respective platforms. We do not receive any personal data from these services.</p>
         
-        <h2><i class="fas fa-sync-alt"></i> 4. Changes to This Policy</h2>
-        <p>We may update our Privacy Policy periodically to reflect any changes in our digital services. All updates will be posted on this page.</p>
+        <h2><i class="fas fa-lock"></i> 4. SSL Security</h2>
+        <p>Your connection to this website is encrypted using <strong>SSL (HTTPS)</strong> provided by Vercel. This ensures that your browsing journey to the Shanaleshwara Temple remains private and secure from interception.</p>
 
         <div class="footer-note">
             © 2026 Shanaleshwara Temple | Coded with Blessings of Mahadev<br>
-            <span style="font-size: 0.7rem; opacity: 0.8;">Cyber Secure Initiative</span>
+            <span style="font-size: 0.7rem; opacity: 0.8;">Hosted on Vercel • Secure & Static</span>
         </div>
     </div>
 
     <script>
-        // THEME LOGIC (SYNCED WITH INDEX PAGE)
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById('themeIcon');
@@ -159,9 +156,9 @@
             }
         }
 
-        // Apply saved theme immediately on load
         if (localStorage.getItem('theme') === 'dark') {
-            toggleTheme(); 
+            document.body.setAttribute('data-theme', 'dark');
+            document.getElementById('themeIcon').classList.replace('fa-moon', 'fa-sun');
         }
     </script>
 </body>
