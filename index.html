@@ -7,7 +7,7 @@
     
     <title>Shanaleshwara Swayambhu Temple | Nalas, Rajpura</title>
     <meta name="description" content="Official App of Shanaleshwara Swayambhu Temple. 600 Years of Heritage.">
-        <meta property="og:title" content="Shanaleshwara Swayambhu Temple">
+    <meta property="og:title" content="Shanaleshwara Swayambhu Temple">
     <meta property="og:description" content="NALAS • RAJPURA • PUNJAB">
     <meta property="og:image" content="https://shanaleshwara.vercel.app/favicon.png">
     <meta property="og:type" content="website">
@@ -239,7 +239,7 @@
             display: flex; justify-content: space-around; padding: 10px 0 15px;
             border-top: 1px solid var(--glass-border); z-index: 1000;
         }
-        .nav-item { color: var(--text-light); text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; font-weight: 600; cursor: pointer; }
+        .nav-item { color: var(--text-light); text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; font-weight: 600; cursor: pointer; transition: color 0.3s; }
         .nav-item i { font-size: 1.3rem; margin-bottom: 4px; }
         .nav-item.active { color: var(--primary); }
         .nav-item.active i { transform: translateY(-3px); }
@@ -259,7 +259,7 @@
 </head>
 <body oncontextmenu="return false;">
 
-    <!-- TOP NAVBAR (Updated with javascript:void(0) to fix jumps) -->
+    <!-- TOP NAVBAR -->
     <nav class="top-navbar">
         <a href="javascript:void(0)" onclick="scrollToSection('home-section')" class="nav-logo"><i class="fas fa-gopuram"></i> SHANALESHWARA</a>
         
@@ -296,7 +296,7 @@
         <i class="fas fa-search search-icon"></i>
     </div>
 
-    <!-- MAIN CONTENT - IDs Added for Navigation -->
+    <!-- MAIN CONTENT -->
     <div class="main-wrapper">
         
         <!-- HOME HEADER -->
@@ -349,8 +349,8 @@
             </div>
         </div>
 
-        <!-- GALLERY SECTION -->
-        <div id="gallery-section" class="glass-card" data-aos="fade-up">
+        <!-- GALLERY SECTION (Fixed: Added content-card class for search) -->
+        <div id="gallery-section" class="glass-card content-card" data-aos="fade-up">
             <h2><i class="fas fa-images"></i> Divine Gallery</h2>
             <div class="gallery-grid">
                 <img src="img1.jpg" class="gallery-img" onclick="openZoom(this.src)" alt="Temple View">
@@ -361,8 +361,8 @@
             </div>
         </div>
 
-        <!-- MAP SECTION -->
-        <div id="map-section" class="glass-card" data-aos="fade-up">
+        <!-- MAP SECTION (Fixed: Added content-card class for search) -->
+        <div id="map-section" class="glass-card content-card" data-aos="fade-up">
             <h2><i class="fas fa-map-marked-alt"></i> Reach the Temple</h2>
             <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3436.568778402484!2d76.5746!3d30.5356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32344a6e8d7%3A0x742749553754972!2sNalas%2C%20Punjab!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
             
@@ -386,15 +386,16 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- MOBILE BOTTOM NAV (Updated IDs) -->
+    <!-- MOBILE BOTTOM NAV -->
     <div class="bottom-nav">
-        <a href="javascript:void(0)" class="nav-item active" onclick="scrollToSection('home-section')">
+        <!-- Added data-target for highlighting -->
+        <a href="javascript:void(0)" class="nav-item active" onclick="scrollToSection('home-section')" data-target="home-section">
             <i class="fas fa-home"></i> Home
         </a>
-        <a href="javascript:void(0)" class="nav-item" onclick="scrollToSection('gallery-section')">
+        <a href="javascript:void(0)" class="nav-item" onclick="scrollToSection('gallery-section')" data-target="gallery-section">
             <i class="fas fa-images"></i> Gallery
         </a>
-        <a href="javascript:void(0)" class="nav-item" onclick="scrollToSection('map-section')">
+        <a href="javascript:void(0)" class="nav-item" onclick="scrollToSection('map-section')" data-target="map-section">
             <i class="fas fa-map-marker-alt"></i> Map
         </a>
         <a href="https://wa.me/?text=Jay%20Shanaleshwara!%20Join%20us:%20https://shanaleshwara.vercel.app" class="nav-item" target="_blank">
@@ -412,11 +413,11 @@
     <script>
         AOS.init({ duration: 800, once: false, offset: 50 });
 
-        // 1. FIXED SCROLL FUNCTION (SMOOTH & ACCURATE)
+        // 1. FIXED SCROLL FUNCTION
         function scrollToSection(id) {
             const el = document.getElementById(id);
             if(el) {
-                const headerOffset = 70; // Height of fixed navbar
+                const headerOffset = 70;
                 const elementPosition = el.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -424,10 +425,12 @@
                     top: offsetPosition,
                     behavior: "smooth"
                 });
+                // Manually set active class on click for immediate feedback
+                updateActiveNav(id);
             }
         }
 
-        // 2. THEME TOGGLE LOGIC (AUTO SAVE)
+        // 2. THEME TOGGLE
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById('themeIcon');
@@ -444,21 +447,16 @@
                 localStorage.setItem('theme', 'dark');
             }
         }
-        // Load Saved Theme
-        if (localStorage.getItem('theme') === 'dark') {
-            toggleTheme(); 
-        }
+        if (localStorage.getItem('theme') === 'dark') { toggleTheme(); }
 
-        // 3. MOBILE MENU & NAVIGATION
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('open');
-        }
+        // 3. MOBILE MENU
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
         function mobileLinkAction(id) {
             document.getElementById('mobileMenu').classList.remove('open');
             scrollToSection(id);
         }
 
-        // 4. SEARCH FUNCTIONALITY
+        // 4. SEARCH FUNCTIONALITY (Now works for all cards)
         function filterContent() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('content-card');
@@ -466,23 +464,61 @@
             for (let i = 0; i < cards.length; i++) {
                 let text = cards[i].innerText.toLowerCase();
                 if (text.includes(input)) {
-                    cards[i].style.display = "block";
+                    cards[i].style.display = "block"; // Note: For Grid items this resets to block, but glass-card handles layout
                 } else {
                     cards[i].style.display = "none";
                 }
             }
         }
 
-        // 5. BACK TO TOP BUTTON
-        window.onscroll = function() {
+        // 5. COMBINED SCROLL EVENT (Back to Top + Mobile Nav Highlighter)
+        window.addEventListener('scroll', function() {
+            // Back to Top Logic
             let btn = document.getElementById("backToTop");
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 btn.style.display = "flex";
             } else {
                 btn.style.display = "none";
             }
-        };
+
+            // Mobile Nav Active State Logic
+            highlightNavOnScroll();
+        });
+
         function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+        // Helper function to highlight nav based on scroll
+        function highlightNavOnScroll() {
+            const sections = ['home-section', 'gallery-section', 'map-section'];
+            let current = 'home-section'; // default
+
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    // Check if section is in view (with offset for header)
+                    const sectionTop = section.offsetTop - 150; 
+                    if (scrollY >= sectionTop) {
+                        current = sectionId;
+                    }
+                }
+            });
+            updateActiveNav(current);
+        }
+
+        function updateActiveNav(activeId) {
+            const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if(item.getAttribute('data-target') === activeId) {
+                    item.classList.add('active');
+                }
+            });
+            // Keep Home active if nothing else matches (or scrolled to top)
+            if(window.scrollY < 100) {
+                 navItems.forEach(item => item.classList.remove('active'));
+                 if(navItems[0]) navItems[0].classList.add('active');
+            }
+        }
 
         // 6. BELL, FLOWERS & OM
         function ringBell() {
@@ -543,4 +579,3 @@
     </script>
 </body>
 </html>
-
